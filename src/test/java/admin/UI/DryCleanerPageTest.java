@@ -2,15 +2,16 @@ package admin.UI;
 
 import admin.DryCleanerPage;
 import com.codeborne.selenide.WebDriverRunner;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.*;
 
 import static com.codeborne.selenide.Selenide.open;
 import static core.Config.ADMIN_AUTH_URL;
 
-public class DryCleanerTest extends DryCleanerPage {
+public class DryCleanerPageTest extends DryCleanerPage {
 
-    private final String DRY_CLEANER_ADDRESS = "Test Address";
-    private final String DRY_CLEANER_NAME = "Test Name";
+    private final String DRY_CLEANER_ADDRESS = "1" + RandomStringUtils.randomAscii(1,20);
+    private final String DRY_CLEANER_NAME = "1" + RandomStringUtils.randomAscii(1,20);
 
     @BeforeEach
     public void authorizeAndOpenDryCleanerPage() {
@@ -66,6 +67,14 @@ public class DryCleanerTest extends DryCleanerPage {
     public void dryCleanerCreation() {
         createDryCleaner(DRY_CLEANER_NAME, DRY_CLEANER_ADDRESS);
         checkDryCleanerCreated(DRY_CLEANER_NAME, DRY_CLEANER_ADDRESS);
+    }
+
+    @Test
+    @Tag("C3465")
+    @DisplayName("Dry Cleaner creation success message")
+    public void dryCleanerCreationSuccessMessage() {
+        createDryCleaner(DRY_CLEANER_NAME, DRY_CLEANER_ADDRESS);
+        checkSuccessMessage("Dry Cleaner was successfully created.");
     }
 
     @AfterEach

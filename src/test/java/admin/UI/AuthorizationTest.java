@@ -91,7 +91,7 @@ public class AuthorizationTest extends AuthorizationPage {
     @DisplayName("Success login message")
     public void SuccessLoginMessage() {
         authorization(VALID_EMAIL, VALID_PASSWORD);
-        checkSuccessLoginMessage();
+        checkSuccessMessage("Logged in successfully");
     }
 
     @Test

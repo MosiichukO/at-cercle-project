@@ -1,14 +1,11 @@
 package admin;
 
 import com.codeborne.selenide.*;
-import io.github.bonigarcia.wdm.webdriver.WebDriverBrowser;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
-public class DryCleanerPage extends AuthorizationPage {
+public class DryCleanerPage extends AllPages {
     public SelenideElement dry_cleaner_tab = $(".fa.fa-hand-paper-o.icon_link.with-tip");
     public SelenideElement add_dry_cleaner_button = $(".btn.btn-primary");
     public SelenideElement status_dropdown = $("#dry_cleaner_status");

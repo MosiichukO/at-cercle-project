@@ -1,72 +1,73 @@
 package admin.UI;
 
 
-import admin.AuthorizationPage;
+import admin.Pages.AuthorizationPage;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 
-import static com.codeborne.selenide.Selenide.open;
-import static core.Config.ADMIN_AUTH_URL;
 
 public class AuthorizationTest extends AuthorizationPage {
 
-    private final String INVALID_EMAIL = "qa@invalid.com";
-    private final String INVALID_PASSWORD = "invalid12";
-    private final String VALID_CLEANER_EMAIL = "qa@cleaner.com";
-    private final String VALID_SUPPORT_EMAIL = "qa@support.com";
-    private final String INVALID_CREDENTIALS_ERROR = "Invalid email or password.";
-
-
     @BeforeEach
     public void openURL() {
-        open(ADMIN_AUTH_URL);
+        openAdminLoginPage();
     }
 
     @Test @Order(1)
     @Tag("C2730")
     @DisplayName("Login with empty password")
     public void LoginEmptyPassword() {
-        authorization(VALID_EMAIL, "");
-        checkErrorMessage(INVALID_CREDENTIALS_ERROR);
+        setRegisteredAdminEmail();
+        clickLoginButton();
+        checkNonRegisteredErrorMessage();
     }
 
     @Test @Order(2)
     @Tag("C2729")
     @DisplayName("Login with empty email")
     public void LoginEmptyEmail() {
-        authorization("", VALID_PASSWORD);
-        checkErrorMessage(INVALID_CREDENTIALS_ERROR);
+        setRegisteredPassword();
+        clickLoginButton();
+        checkNonRegisteredErrorMessage();
     }
 
     @Test @Order(3)
     @Tag("C2730")
     @DisplayName("Login with valid email & invalid password")
     public void LoginValidEmailInvalidPassword() {
-        authorization(VALID_EMAIL, INVALID_PASSWORD);
-        checkErrorMessage(INVALID_CREDENTIALS_ERROR);
+        setRegisteredAdminEmail();
+        setNonRegisteredPassword();
+        clickLoginButton();
+        checkNonRegisteredErrorMessage();
     }
 
     @Test @Order(4)
     @Tag("C2729")
     @DisplayName("Login with invalid email & valid password")
     public void LoginInvalidEmailValidPassword() {
-        authorization(INVALID_EMAIL, VALID_PASSWORD);
-        checkErrorMessage(INVALID_CREDENTIALS_ERROR);
+        setNonRegisteredEmail();
+        setRegisteredPassword();
+        clickLoginButton();
+        checkNonRegisteredErrorMessage();
     }
 
     @Test @Order(5)
     @Tag("C2731")
     @DisplayName("Login with invalid credentials")
     public void LoginInvalidCredentials() {
-        authorization(INVALID_EMAIL, INVALID_PASSWORD);
-        checkErrorMessage(INVALID_CREDENTIALS_ERROR);
+        setNonRegisteredEmail();
+        setNonRegisteredPassword();
+        clickLoginButton();
+        checkNonRegisteredErrorMessage();
     }
 
     @Test @Order(6)
     @Tag("C2726")
     @DisplayName("Login with valid Admin credentials")
     public void LoginValidCredentials() {
-        authorization(VALID_EMAIL, VALID_PASSWORD);
+        setRegisteredAdminEmail();
+        setRegisteredPassword();
+        clickLoginButton();
         checkSignOutButtonVisible();
     }
 
@@ -74,7 +75,9 @@ public class AuthorizationTest extends AuthorizationPage {
     @Tag("C3455")
     @DisplayName("Login with valid Dry Cleaner user credentials")
     public void LoginValidDryCleanerUserCredentials() {
-        authorization(VALID_CLEANER_EMAIL, VALID_PASSWORD);
+        setRegisteredDryCleanerUserEmail();
+        setRegisteredPassword();
+        clickLoginButton();
         checkSignOutButtonVisible();
     }
 
@@ -82,7 +85,9 @@ public class AuthorizationTest extends AuthorizationPage {
     @Tag("C3456")
     @DisplayName("Login with valid Support user credentials")
     public void LoginValidSupportUserCredentials() {
-        authorization(VALID_SUPPORT_EMAIL, VALID_PASSWORD);
+        setRegisteredSupportUserEmail();
+        setRegisteredPassword();
+        clickLoginButton();
         checkSignOutButtonVisible();
     }
 
@@ -90,15 +95,15 @@ public class AuthorizationTest extends AuthorizationPage {
     @Tag("C3155")
     @DisplayName("Success login message")
     public void SuccessLoginMessage() {
-        authorization(VALID_EMAIL, VALID_PASSWORD);
-        checkSuccessMessage("Logged in successfully");
+        authorizationAdmin();
+        checkAuthorizationSuccessMessage();
     }
 
     @Test @Order(10)
     @Tag("C3154")
     @DisplayName("Success logout message")
     public void SuccessLogoutMessage() {
-        authorization(VALID_EMAIL, VALID_PASSWORD);
+        authorizationAdmin();
         logout();
         checkSuccessLogoutMessage();
     }
@@ -107,7 +112,7 @@ public class AuthorizationTest extends AuthorizationPage {
     @Tag("C3453, C3454")
     @DisplayName("Sign out")
     public void SignOut() {
-        authorization(VALID_EMAIL, VALID_PASSWORD);
+        authorizationAdmin();
         logout();
         checkAuthorizationPageOpened();
     }

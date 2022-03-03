@@ -80,7 +80,9 @@ public class DryCleanersPage extends AllPages {
         Selenide.switchTo().alert().accept();
     }
 
-    public void checkDryCleanersPageIsOpened () {add_dry_cleaner_button.shouldBe(Condition.visible);}
+    public void checkDryCleanersPageIsOpened () {
+        page_title.shouldHave(Condition.attribute("text", DRY_CLEANERS_PAGE_TITLE));
+    }
 
     public void checkAddDryCleanerModalOpened() {
         create_button.shouldBe(Condition.visible);
@@ -121,27 +123,27 @@ public class DryCleanersPage extends AllPages {
     }
 
     public void checkDryCleanerUpdateNameBlankError () {
-        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_BLANK_ERROR));
+        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_BLANK_ERROR_EDIT_DC));
     }
 
     public void checkDryCleanerUpdateAddressBlankError () {
-        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(ADDRESS_BLANK_ERROR));
+        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(ADDRESS_BLANK_ERROR_EDIT_DC));
     }
 
     public void checkDryCleanerUpdateEmptyInputFieldsError () {
-        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_ADDRESS_BLANK_ERROR));
+        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_ADDRESS_BLANK_ERROR_EDIT_DC));
     }
 
-    public void checkBlankNameError () {
-        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_BLANK_ERROR));
+    public void checkDryCleanerCreateBlankNameError () {
+        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_BLANK_ERROR_CREATE_DC));
     }
 
-    public void checkBlankAddressError () {
-        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(ADDRESS_BLANK_ERROR));
+    public void checkDryCleanerCreateBlankAddressError () {
+        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(ADDRESS_BLANK_ERROR_CREATE_DC));
     }
 
-    public void checkBlankNameAddressError () {
-        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_ADDRESS_BLANK_ERROR));
+    public void checkDryCleanerCreateBlankNameAddressError () {
+        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_ADDRESS_BLANK_ERROR_CREATE_DC));
     }
 
     public void checkDryCleanerRemovedFromList () {

@@ -5,7 +5,7 @@ import admin.Pages.AuthorizationPage;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 
-
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AuthorizationTest extends AuthorizationPage {
 
     @BeforeEach

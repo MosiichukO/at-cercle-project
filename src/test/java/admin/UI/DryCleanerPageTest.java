@@ -45,7 +45,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
             clickAddDryCleanerButton();
             setNonEmptyAddressForCreate();
             clickCreateButton();
-            checkBlankNameError();
+            checkDryCleanerCreateBlankNameError();
         }
 
         @Test
@@ -56,7 +56,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
             clickAddDryCleanerButton();
             setNonEmptyNameForCreate();
             clickCreateButton();
-            checkBlankAddressError();
+            checkDryCleanerCreateBlankAddressError();
         }
 
         @Test
@@ -66,7 +66,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         public void nameAndAddressCanNotBeBlankErrorCreateModal() {
             clickAddDryCleanerButton();
             clickCreateButton();
-            checkBlankNameAddressError();
+            checkDryCleanerCreateBlankNameAddressError();
         }
 
         @Test

@@ -125,10 +125,151 @@ public class UsersPageTest extends UsersPage {
         @Test
         @Order(1)
         @Tag("C3514")
-        @DisplayName("By clicking New User button, New user page is opened ")
+        @DisplayName("By clicking New User button, New user page is opened")
         public void newUserPageOpenedByClickingNewUserButton () {
             clickNewUserButton();
             checkNewUserPageOpened();
+        }
+
+        @Test
+        @Order(2)
+        @Tag("C3515")
+        @DisplayName("If email is empty, there is error message: Email can't be blank")
+        public void emailCanNotBeBlankErrorMessage () {
+            clickNewUserButton();
+            setRandomValidEqualPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkUserCreateEmailBlankError();
+        }
+
+        @Test
+        @Order(3)
+        @Tag("C3516")
+        @DisplayName("If password is empty, there is error message: Password can't be blank")
+        public void passwordCanNotBeBlankErrorMessage () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkUserCreatePasswordBlankError();
+        }
+
+        @Test
+        @Order(4)
+        @Tag("C3517")
+        @DisplayName("If email is empty, Email field is highlighted in red")
+        public void redBorderIfEmailIsEmpty () {
+            clickNewUserButton();
+            setRandomValidEqualPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkErrorEmailFieldBorderColor();
+        }
+
+        @Test
+        @Order(5)
+        @Tag("C3519")
+        @DisplayName("If password is empty, Password field is highlighted in red")
+        public void redBorderIfPasswordIsEmpty () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkErrorPasswordFieldBorderColor();
+        }
+
+        @Test
+        @Order(6)
+        @Tag("C3525")
+        @DisplayName("If password consists of < 6 symbols, Password field is highlighted in red")
+        public void redBorderIfPasswordLessThanSixSymbols () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            setRandomInvalidLengthEqualPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkErrorPasswordFieldBorderColor();
+        }
+
+        @Test
+        @Order(7)
+        @Tag("C3527")
+        @DisplayName("If email already exists in DB, there is error message: Email has been already taken")
+        public void emailTakenErrorIfEmailExistsInDB () {
+            clickNewUserButton();
+            setExistingEmail();
+            setRandomValidEqualPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkUserCreateEmailExistingError();
+        }
+
+        @Test
+        @Order(8)
+        @Tag("C3528")
+        @DisplayName("If email already exists in DB, Email field is highlighted in red")
+        public void redBorderIfEmailIsAlreadyTaken () {
+            clickNewUserButton();
+            setExistingEmail();
+            setRandomValidEqualPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkErrorEmailFieldBorderColor();
+        }
+
+        @Test
+        @Order(9)
+        @Tag("C3530")
+        @DisplayName("By clicking Cancel button, Users page is opened")
+        public void usersPageOpenedByClickingCancelButton () {
+            clickNewUserButton();
+            clickCancelButton();
+            checkUsersPageIsOpened();
+        }
+
+        @Test
+        @Order(10)
+        @Tag("C3531")
+        @DisplayName("If email doesn't contain @ and is not empty, there is an error tooltip")
+        public void errorTooltipIfEmailWithoutAmpersand () {
+            clickNewUserButton();
+            setRandomEmailWithoutAmpersand();
+            clickCreateButton();
+            checkTooltipEmailWithoutAmpersand();
+        }
+
+        @Test
+        @Order(11)
+        @Tag("C3532")
+        @DisplayName("If email contains @ but there are no symbols before it, there is error tooltip")
+        public void errorTooltipIfEmailWithoutPartBeforeAmpersand () {
+            clickNewUserButton();
+            setRandomEmailWithoutPartBeforeAmpersand();
+            clickCreateButton();
+            checkTooltipEmailWithoutPartBeforeAmpersand();
+        }
+
+        @Test
+        @Order(12)
+        @Tag("C3533")
+        @DisplayName("If email contains @ but there are no symbols after it, there is an error tooltip")
+        public void errorTooltipIfEmailWithoutPartAfterAmpersand () {
+            clickNewUserButton();
+            setRandomEmailWithoutPartAfterAmpersand();
+            clickCreateButton();
+            checkTooltipEmailWithoutPartAfterAmpersand();
+        }
+
+        @Test
+        @Order(13)
+        @Tag("C3534")
+        @DisplayName("If email contains @ and a dot after it, there is an error tooltip")
+        public void errorTooltipIfEmailDorRightAfterAmpersand () {
+            clickNewUserButton();
+            setRandomEmailWithDotRightAfterAmpersand();
+            clickCreateButton();
+            checkTooltipEmailWithDotRightAfterAmpersand();
         }
     }
 

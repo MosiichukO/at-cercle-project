@@ -1,10 +1,12 @@
 package admin.Pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import org.openqa.selenium.By;
 
 import java.util.*;
+
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.$;
 
 
 public class UsersPage extends AllPages {
@@ -46,6 +48,18 @@ public class UsersPage extends AllPages {
         }
     }
 
+    public void clickDryCleanerCheckbox () {
+        new_user_dry_cleaner_checkbox.click();
+    }
+
+    public void clickSupportCheckbox () {
+        new_user_support_checkbox.click();
+    }
+
+    public void clickAdminCheckbox () {
+        new_user_admin_checkbox.click();
+    }
+
     public void clickCreateButton () {
         new_user_create_button.click();
     }
@@ -67,27 +81,39 @@ public class UsersPage extends AllPages {
     }
 
     public void setRandomValidEqualPasswordAndConfirmation () {
-        UUID uuid = UUID.randomUUID();
-        String random_password = uuid.toString()
-                .substring(5, (int) ((Math.random() * (36 - PASSWORD_MIN_LENGTH)) + PASSWORD_MIN_LENGTH));
-        new_user_password_field.setValue(random_password);
-        new_user_password_confirmation_field.setValue(random_password);
+        new_user_password_field.setValue(RANDOM_PASSWORD_VALID_LENGTH);
+        new_user_password_confirmation_field.setValue(RANDOM_PASSWORD_VALID_LENGTH);
     }
 
     public void setRandomInvalidLengthEqualPasswordAndConfirmation () {
-        UUID uuid = UUID.randomUUID();
-        String random_password = uuid.toString()
-                .substring(0, (int) ((Math.random() * 5)));
-        new_user_password_field.setValue(random_password);
-        new_user_password_confirmation_field.setValue(random_password);
+        new_user_password_field.setValue(RANDOM_PASSWORD_INVALID_LENGTH);
+        new_user_password_confirmation_field.setValue(RANDOM_PASSWORD_INVALID_LENGTH);
+    }
+
+    public void setRandomValidDifferentPasswordAndConfirmation () {
+        new_user_password_field.setValue(RANDOM_PASSWORD_VALID_LENGTH);
+        new_user_password_confirmation_field.setValue(RANDOM_PASSWORD_VALID_LENGTH + RANDOM_PASSWORD_VALID_LENGTH);
+    }
+
+    public void setTestPasswordAndConfirmation () {
+        new_user_password_field.setValue(TEST_VALID_PASSWORD);
+        new_user_password_confirmation_field.setValue(TEST_VALID_PASSWORD);
     }
 
     public void setRandomValidEmail () {
-        UUID uuid = UUID.randomUUID();
-        String random_email = uuid.toString().substring(0, 10)
-                + "@" + uuid.toString().substring(11, 20) + "."
-                + uuid.toString().substring(21, 30);
-        new_user_email_field.setValue(random_email);
+        new_user_email_field.setValue(RANDOM_VALID_EMAIL);
+    }
+
+    public void setTestValidEmailDryCleaner () {
+        new_user_email_field.setValue(TEST_VALID_EMAIL_DC);
+    }
+
+    public void setTestValidEmailSupport () {
+        new_user_email_field.setValue(TEST_VALID_EMAIL_SUPPORT);
+    }
+
+    public void setTestValidEmailAdmin () {
+        new_user_email_field.setValue(TEST_VALID_EMAIL_ADMIN);
     }
 
     public void setRandomEmailWithoutAmpersand () {
@@ -106,6 +132,10 @@ public class UsersPage extends AllPages {
         new_user_email_field.setValue(RANDOM_EMAIL_WITH_DOT_RIGHT_AFTER_AMPERSAND);
     }
 
+    public void setRandomEmailWithSpecSymbolExceptDotAfterAmpersand () {
+        new_user_email_field.setValue(RANDOM_EMAIL_WITH_SPEC_SYMBOL_AFTER_AMPERSAND);
+    }
+
     public void setExistingEmail () {
         new_user_email_field.setValue(REGISTERED_ADMIN_EMAIL);
     }
@@ -115,8 +145,7 @@ public class UsersPage extends AllPages {
     }
 
     public void checkUsersRoleInList(String role) {
-        ElementsCollection user_tr = users_table.$$(By.tagName("TR"));
-        for (com.codeborne.selenide.SelenideElement selenideElement : user_tr) {
+        for (com.codeborne.selenide.SelenideElement selenideElement : user_info_lines) {
             selenideElement.find(By.xpath("td[2]")).shouldHave(Condition.exactText(role));
         }
     }
@@ -134,8 +163,7 @@ public class UsersPage extends AllPages {
     }
 
     public void checkTwoRolesInList(String role) {
-        ElementsCollection user_tr = users_table.$$(By.tagName("TR"));
-        for (com.codeborne.selenide.SelenideElement selenideElement : user_tr) {
+        for (com.codeborne.selenide.SelenideElement selenideElement : user_info_lines) {
             selenideElement.find(By.xpath("td[2]")).shouldNotHave(Condition.exactText(role));
         }
     }
@@ -153,15 +181,13 @@ public class UsersPage extends AllPages {
     }
 
     public void checkFilterResultsBySupportEmail() {
-        ElementsCollection user_tr = users_table.$$(By.tagName("TR"));
-        for (com.codeborne.selenide.SelenideElement selenideElement : user_tr) {
+        for (com.codeborne.selenide.SelenideElement selenideElement : user_info_lines) {
             selenideElement.find(By.xpath("td[1]")).shouldHave(Condition.exactText(REGISTERED_SUPPORT_EMAIL));
         }
     }
 
     public void checkFilterResultsByPartOfEmail () {
-        ElementsCollection user_tr = users_table.$$(By.tagName("TR"));
-        for (com.codeborne.selenide.SelenideElement selenideElement : user_tr) {
+        for (com.codeborne.selenide.SelenideElement selenideElement : user_info_lines) {
             selenideElement.find(By.xpath("td[1]")).shouldHave(Condition.matchText(".*" + PART_OF_EMAIL_FOR_FILTERING + ".*"));
         }
     }
@@ -210,4 +236,67 @@ public class UsersPage extends AllPages {
                 String.format(EMAIL_DOT_RIGHT_AFTER_AMPERSAND_ERROR,
                         RANDOM_EMAIL_WITH_DOT_RIGHT_AFTER_AMPERSAND.split("@")[1])));
     }
+
+    public void checkTooltipEmailWithSpecSymbolAfterAmpersand () {
+        new_user_email_field.shouldHave(Condition.attribute("validationMessage",
+                String.format(EMAIL_SPEC_SYMBOL_AFTER_AMPERSAND_ERROR, random_spec_symbol)));
+    }
+
+    public void checkEmailFormErrorCanNotBeBlank () {
+        new_user_email_field_error_form.shouldHave(Condition.exactText(BLANK_FORM_ERROR));
+    }
+
+    public void checkPasswordFormErrorCanNotBeBlank () {
+        new_user_password_field_error_form.shouldHave(Condition.exactText(BLANK_FORM_ERROR));
+    }
+
+    public void checkInvalidPasswordLengthErrorMessage () {
+        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(PASSWORD_INVALID_LENGTH_ERROR_CREATE_USER));
+    }
+
+    public void checkPasswordFormErrorInvalidLength () {
+        new_user_password_field_error_form.shouldHave(Condition.exactText(TOO_SHORT_FORM_6_SYMBOLS_ERROR));
+    }
+
+    public void checkEmailFormErrorAlreadyTaken () {
+        new_user_email_field_error_form.shouldHave(Condition.exactText(ALREADY_TAKEN_FORM_ERROR));
+    }
+
+    public void checkDifferentPasswordAndConfirmationErrorMessage () {
+        error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(DIFFERENT_PASSWORD_AND_CONFIRMATION_ERROR));
+    }
+
+    public void checkConfirmationPasswordFormErrorDoesNotMatchPassword () {
+        new_user_password_confirmation_error_form.shouldHave(Condition.exactText(PASSWORD_DO_NOT_MATCH_CONFIRMATION_FORM_ERROR));
+    }
+
+    public void checkEditNewDcUserPageIsOpened () {
+        page_title.shouldHave(Condition.attribute("text", String.format(EDIT_USER_PAGE_TITLE, TEST_VALID_EMAIL_DC)));
+    }
+
+    public void checkEditNewSupportUserPageIsOpened () {
+        page_title.shouldHave(Condition.attribute("text", String.format(EDIT_USER_PAGE_TITLE, TEST_VALID_EMAIL_SUPPORT)));
+    }
+
+    public void checkEditNewAdminPageIsOpened () {
+        page_title.shouldHave(Condition.attribute("text", String.format(EDIT_USER_PAGE_TITLE, TEST_VALID_EMAIL_ADMIN)));
+    }
+
+    public void checkEditButtonIsPresentForTestUser () {
+        while (true) {
+            if (next_button.isDisplayed()) {
+                if ($(byText(TEST_VALID_EMAIL_ADMIN)).isDisplayed()) {
+                    getUserEditButtonFromUsersList(TEST_VALID_EMAIL_ADMIN).shouldBe(Condition.visible);
+                    break;
+                } else {
+                    next_button.click();
+                }
+            } else {
+                getUserEditButtonFromUsersList(TEST_VALID_EMAIL_ADMIN).shouldBe(Condition.visible);
+                break;
+            }
+        }
+    }
+
+
 }

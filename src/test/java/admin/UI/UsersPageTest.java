@@ -133,8 +133,18 @@ public class UsersPageTest extends UsersPage {
 
         @Test
         @Order(2)
+        @Tag("C3530")
+        @DisplayName("By clicking Cancel button, Users page is opened")
+        public void usersPageOpenedByClickingCancelButton () {
+            clickNewUserButton();
+            clickCancelButton();
+            checkUsersPageIsOpened();
+        }
+
+        @Test
+        @Order(3)
         @Tag("C3515")
-        @DisplayName("If email is empty, there is error message: Email can't be blank")
+        @DisplayName("If email is empty, there is error message")
         public void emailCanNotBeBlankErrorMessage () {
             clickNewUserButton();
             setRandomValidEqualPasswordAndConfirmation();
@@ -144,19 +154,19 @@ public class UsersPageTest extends UsersPage {
         }
 
         @Test
-        @Order(3)
-        @Tag("C3516")
-        @DisplayName("If password is empty, there is error message: Password can't be blank")
-        public void passwordCanNotBeBlankErrorMessage () {
+        @Order(4)
+        @Tag("C3518")
+        @DisplayName("If email is empty, there is a form error message")
+        public void emailCanNotBeBlankFormErrorMessage () {
             clickNewUserButton();
-            setRandomValidEmail();
+            setRandomValidEqualPasswordAndConfirmation();
             clickRandomRoleUserCreation();
             clickCreateButton();
-            checkUserCreatePasswordBlankError();
+            checkEmailFormErrorCanNotBeBlank();
         }
 
         @Test
-        @Order(4)
+        @Order(5)
         @Tag("C3517")
         @DisplayName("If email is empty, Email field is highlighted in red")
         public void redBorderIfEmailIsEmpty () {
@@ -168,34 +178,9 @@ public class UsersPageTest extends UsersPage {
         }
 
         @Test
-        @Order(5)
-        @Tag("C3519")
-        @DisplayName("If password is empty, Password field is highlighted in red")
-        public void redBorderIfPasswordIsEmpty () {
-            clickNewUserButton();
-            setRandomValidEmail();
-            clickRandomRoleUserCreation();
-            clickCreateButton();
-            checkErrorPasswordFieldBorderColor();
-        }
-
-        @Test
         @Order(6)
-        @Tag("C3525")
-        @DisplayName("If password consists of < 6 symbols, Password field is highlighted in red")
-        public void redBorderIfPasswordLessThanSixSymbols () {
-            clickNewUserButton();
-            setRandomValidEmail();
-            setRandomInvalidLengthEqualPasswordAndConfirmation();
-            clickRandomRoleUserCreation();
-            clickCreateButton();
-            checkErrorPasswordFieldBorderColor();
-        }
-
-        @Test
-        @Order(7)
         @Tag("C3527")
-        @DisplayName("If email already exists in DB, there is error message: Email has been already taken")
+        @DisplayName("If email already exists in DB, there is error message")
         public void emailTakenErrorIfEmailExistsInDB () {
             clickNewUserButton();
             setExistingEmail();
@@ -203,6 +188,19 @@ public class UsersPageTest extends UsersPage {
             clickRandomRoleUserCreation();
             clickCreateButton();
             checkUserCreateEmailExistingError();
+        }
+
+        @Test
+        @Order(7)
+        @Tag("C3529")
+        @DisplayName("If email already exists in DB, there is a form error message")
+        public void emailAlreadyTakenFormErrorMessage () {
+            clickNewUserButton();
+            setExistingEmail();
+            setRandomValidEqualPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkEmailFormErrorAlreadyTaken();
         }
 
         @Test
@@ -220,16 +218,6 @@ public class UsersPageTest extends UsersPage {
 
         @Test
         @Order(9)
-        @Tag("C3530")
-        @DisplayName("By clicking Cancel button, Users page is opened")
-        public void usersPageOpenedByClickingCancelButton () {
-            clickNewUserButton();
-            clickCancelButton();
-            checkUsersPageIsOpened();
-        }
-
-        @Test
-        @Order(10)
         @Tag("C3531")
         @DisplayName("If email doesn't contain @ and is not empty, there is an error tooltip")
         public void errorTooltipIfEmailWithoutAmpersand () {
@@ -240,7 +228,7 @@ public class UsersPageTest extends UsersPage {
         }
 
         @Test
-        @Order(11)
+        @Order(10)
         @Tag("C3532")
         @DisplayName("If email contains @ but there are no symbols before it, there is error tooltip")
         public void errorTooltipIfEmailWithoutPartBeforeAmpersand () {
@@ -251,7 +239,7 @@ public class UsersPageTest extends UsersPage {
         }
 
         @Test
-        @Order(12)
+        @Order(11)
         @Tag("C3533")
         @DisplayName("If email contains @ but there are no symbols after it, there is an error tooltip")
         public void errorTooltipIfEmailWithoutPartAfterAmpersand () {
@@ -262,14 +250,177 @@ public class UsersPageTest extends UsersPage {
         }
 
         @Test
-        @Order(13)
+        @Order(12)
         @Tag("C3534")
         @DisplayName("If email contains @ and a dot after it, there is an error tooltip")
-        public void errorTooltipIfEmailDorRightAfterAmpersand () {
+        public void errorTooltipIfEmailDotRightAfterAmpersand () {
             clickNewUserButton();
             setRandomEmailWithDotRightAfterAmpersand();
             clickCreateButton();
             checkTooltipEmailWithDotRightAfterAmpersand();
+        }
+
+        @Test
+        @Order(13)
+        @Tag("C3538")
+        @DisplayName("If email contains @ and a special symbol except for a dot in any place after it, there is an error tooltip")
+        public void errorTooltipIfEmailSpecSymbolExceptDotAfterAmpersand () {
+            clickNewUserButton();
+            setRandomEmailWithSpecSymbolExceptDotAfterAmpersand();
+            clickCreateButton();
+            checkTooltipEmailWithSpecSymbolAfterAmpersand();
+        }
+
+        @Test
+        @Order(14)
+        @Tag("C3516")
+        @DisplayName("If password is empty, there is error message")
+        public void passwordCanNotBeBlankErrorMessage () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkUserCreatePasswordBlankError();
+        }
+
+        @Test
+        @Order(15)
+        @Tag("C3520")
+        @DisplayName("If password is empty, there is a form error message")
+        public void passwordCanNotBeBlankFormErrorMessage () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkPasswordFormErrorCanNotBeBlank();
+        }
+
+        @Test
+        @Order(16)
+        @Tag("C3519")
+        @DisplayName("If password is empty, Password field is highlighted in red")
+        public void redBorderIfPasswordIsEmpty () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkErrorPasswordFieldBorderColor();
+        }
+
+        @Test
+        @Order(17)
+        @Tag("C3521, C3522")
+        @DisplayName("If password consists of < 6 symbols, there is an error message")
+        public void errorMessageIfPasswordLessThanSixSymbols () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            setRandomInvalidLengthEqualPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkInvalidPasswordLengthErrorMessage();
+        }
+
+        @Test
+        @Order(18)
+        @Tag("C3526")
+        @DisplayName("If password consists of < 6 symbols, there is a form error message")
+        public void passwordIsTooShortFormErrorMessage () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            setRandomInvalidLengthEqualPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkPasswordFormErrorInvalidLength();
+        }
+
+        @Test
+        @Order(19)
+        @Tag("C3525")
+        @DisplayName("If password consists of < 6 symbols, Password field is highlighted in red")
+        public void redBorderIfPasswordLessThanSixSymbols () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            setRandomInvalidLengthEqualPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkErrorPasswordFieldBorderColor();
+        }
+
+        @Test
+        @Order(20)
+        @Tag("C3523")
+        @DisplayName("If password != password confirmation, there is an error message")
+        public void errorMessageIfPasswordNotEqualPasswordConfirmation () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            setRandomValidDifferentPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkDifferentPasswordAndConfirmationErrorMessage();
+        }
+
+        @Test
+        @Order(21)
+        @Tag("C3524")
+        @DisplayName("If password != password confirmation, there is a form error message")
+        public void differentPasswordAndConfirmationFormErrorMessage () {
+            clickNewUserButton();
+            setRandomValidEmail();
+            setRandomValidDifferentPasswordAndConfirmation();
+            clickRandomRoleUserCreation();
+            clickCreateButton();
+            checkConfirmationPasswordFormErrorDoesNotMatchPassword();
+        }
+
+        @Test
+        @Order(22)
+        @Tag("C3535")
+        @DisplayName("It is possible to create Dry cleaner user")
+        public void itIsPossibleToCreateDryCleanerUser () {
+            clickNewUserButton();
+            setTestValidEmailDryCleaner();
+            setTestPasswordAndConfirmation();
+            clickDryCleanerCheckbox();
+            clickCreateButton();
+            checkEditNewDcUserPageIsOpened();
+        }
+
+        @Test
+        @Order(23)
+        @Tag("C3536")
+        @DisplayName("It is possible to create Support user")
+        public void itIsPossibleToCreateSupportUser () {
+            clickNewUserButton();
+            setTestValidEmailSupport();
+            setTestPasswordAndConfirmation();
+            clickSupportCheckbox();
+            clickCreateButton();
+            checkEditNewSupportUserPageIsOpened();
+        }
+
+        @Test
+        @Order(24)
+        @Tag("C3537")
+        @DisplayName("It is possible to create Admin")
+        public void itIsPossibleToCreateAdmin () {
+            clickNewUserButton();
+            setTestValidEmailAdmin();
+            setTestPasswordAndConfirmation();
+            clickAdminCheckbox();
+            clickCreateButton();
+            checkEditNewAdminPageIsOpened();
+        }
+    }
+
+    @Nested
+    @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+    class EditUserTest {
+        @Test
+        @Order(1)
+        @Tag("C3576")
+        @DisplayName("There is edit button for users from Users page")
+        public void thereIsEditButtonForUsers () {
+            checkEditButtonIsPresentForTestUser();
         }
     }
 

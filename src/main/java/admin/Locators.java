@@ -4,6 +4,10 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import java.util.Objects;
+
+import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -44,8 +48,14 @@ public class Locators extends TestData {
     public SelenideElement support_role_option = $(By.xpath("//div[text()='Support']"));
     public SelenideElement search_button = $("#spree\\/user_search > div.actions.filter-actions > button");
     public SelenideElement users_table = $("#listing_users > tbody");
+    public ElementsCollection user_info_lines = users_table.$$(By.tagName("TR"));
     public SelenideElement member_since_start_filter_field = $("#q_created_at_gt");
     public SelenideElement email_filter_filed = $("#q_email_cont");
+    public SelenideElement next_button = $(By.linkText("Next ›"));
+    public SelenideElement getUserEditButtonFromUsersList (String user_email) {
+        return $$(byAttribute("href", Objects.requireNonNull($(byText(user_email))
+                .getAttribute("href")))).get(1);
+    }
 
     // New User page locators
     public SelenideElement new_user_email_field = $("#user_email");
@@ -57,4 +67,7 @@ public class Locators extends TestData {
     public SelenideElement new_user_dry_cleaner_checkbox = $("#user_spree_role_dry_cleaner");
     public SelenideElement new_user_create_button = $(".btn.btn-primary");
     public SelenideElement new_user_cancel_button = $(".button");
+    public SelenideElement new_user_email_field_error_form = $("#user_email_field").$(By.className("formError"));
+    public SelenideElement new_user_password_field_error_form = $("#user_password_field").$(By.className("formError"));
+    public SelenideElement new_user_password_confirmation_error_form = $$("#user_password_field").get(1).$(By.className("formError"));
 }

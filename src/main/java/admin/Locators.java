@@ -56,18 +56,25 @@ public class Locators extends TestData {
         return $$(byAttribute("href", Objects.requireNonNull($(byText(user_email))
                 .getAttribute("href")))).get(1);
     }
+    public SelenideElement getUserEmailButtonFromUsersList (String user_email) {
+        return $$(byAttribute("href", Objects.requireNonNull($(byText(user_email))
+                .getAttribute("href")))).get(0);
+    }
 
-    // New User page locators
-    public SelenideElement new_user_email_field = $("#user_email");
-    public SelenideElement new_user_password_field = $("#user_password");
-    public SelenideElement new_user_password_confirmation_field = $("#user_password_confirmation");
-    public SelenideElement new_user_username_field = $("#user_username");
-    public SelenideElement new_user_admin_checkbox = $("#user_spree_role_admin");
-    public SelenideElement new_user_support_checkbox = $("#user_spree_role_support");
-    public SelenideElement new_user_dry_cleaner_checkbox = $("#user_spree_role_dry_cleaner");
+    // Create User and Edit User pages locators
     public SelenideElement new_user_create_button = $(".btn.btn-primary");
-    public SelenideElement new_user_cancel_button = $(".button");
-    public SelenideElement new_user_email_field_error_form = $("#user_email_field").$(By.className("formError"));
-    public SelenideElement new_user_password_field_error_form = $("#user_password_field").$(By.className("formError"));
-    public SelenideElement new_user_password_confirmation_error_form = $$("#user_password_field").get(1).$(By.className("formError"));
+    public SelenideElement user_cancel_button = $(byText("Cancel"));
+    public SelenideElement edit_user_update_button = $(byText("Update"));
+    public SelenideElement user_email_field = $("#user_email");
+    public SelenideElement email_field_error_form = $("#user_email_field").$(By.className("formError"));
+    public SelenideElement user_password_field = $("#user_password");
+    public SelenideElement user_password_confirmation_field = $("#user_password_confirmation");
+    public SelenideElement user_password_field_error_form = $("#user_password_field").$(By.className("formError"));
+    public SelenideElement user_password_confirmation_error_form = $$("#user_password_field").get(1).$(By.className("formError"));
+    public SelenideElement user_username_field = $("#user_username");
+    public SelenideElement user_admin_checkbox = $("#user_spree_role_admin");
+    public SelenideElement user_support_checkbox = $("#user_spree_role_support");
+    public SelenideElement user_dry_cleaner_checkbox = $("#user_spree_role_dry_cleaner");
+
+
 }

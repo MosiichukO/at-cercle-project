@@ -37,6 +37,8 @@ public class TestData extends Credentials {
     public final String TOO_SHORT_FORM_6_SYMBOLS_ERROR = "is too short (minimum is 6 characters)";
     public final String ALREADY_TAKEN_FORM_ERROR = "has already been taken";
     public final String PASSWORD_DO_NOT_MATCH_CONFIRMATION_FORM_ERROR = "doesn't match Password";
+    public final String ROLE_IS_NOT_CHOSEN_ERROR = "Please select role for the user.";
+    public final String USER_UPDATE_SUCCESS_MESSAGE = "Account updated";
 
     // Page's titles
 
@@ -44,6 +46,7 @@ public class TestData extends Credentials {
     public final String NEW_USER_PAGE_TITLE = "New User - Users";
     public final String USERS_PAGE_TITLE = "Users";
     public final String EDIT_USER_PAGE_TITLE = "%s - Users";
+    public final String AUTHORIZATION_PAGE_TITLE = "User Sessions";
 
     // Dropdowns' options
 

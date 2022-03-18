@@ -197,7 +197,9 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @AfterAll
         public void deleteTestData () {
             deleteCreatedDryCleaner();
+            WebDriverRunner.driver().close();
         }
+
     }
 
     @Nested

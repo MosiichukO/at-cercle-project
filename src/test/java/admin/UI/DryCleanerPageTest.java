@@ -187,17 +187,21 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @Test
         @Order(17)
         @Tag("C3510")
-        @DisplayName("By clicking Delete button, Dry cleaner is removed from dry cleaner's list ")
+        @DisplayName("By clicking Delete button, Dry cleaner is removed from dry cleaner's list")
         public void dryCleanerRemovedFromListByClickingDeleteButton() {
-            clickDeleteButton();
+            clickDeleteButtonForUpdatedDc();
             confirmDryCleanerDelete();
-            checkDryCleanerRemovedFromList();
+            checkUpdatedDryCleanerRemovedFromList();
         }
 
-        @AfterAll
-        public void deleteTestData () {
-            deleteCreatedDryCleaner();
-            WebDriverRunner.driver().close();
+        @Test
+        @Order(18)
+        @Tag("C5475")
+        @DisplayName("Dry Cleaner was successfully destroyed. message if Dry Cleaner was deleted")
+        public void successDryCleanerDeleteMessage() {
+            clickDeleteButtonForNotUpdatedDc();
+            confirmDryCleanerDelete();
+            checkDryCleanerDeleteSuccessMessage();
         }
 
     }

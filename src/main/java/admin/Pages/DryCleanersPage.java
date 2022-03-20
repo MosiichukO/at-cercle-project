@@ -2,13 +2,10 @@ package admin.Pages;
 
 import com.codeborne.selenide.*;
 
-import java.util.Objects;
-
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$;
 
 public class DryCleanersPage extends AllPages {
 
@@ -21,18 +18,19 @@ public class DryCleanersPage extends AllPages {
     }
 
     public void clickEditButton () {
-        $$(byAttribute("href", Objects.requireNonNull($(byText(DRY_CLEANER_NAME))
-                .getAttribute("href")))).get(1).click();
+        getDcEditButton(DRY_CLEANER_NAME).click();
     }
 
     public void clickDryCleanerName () {
-        $$(byAttribute("href", Objects.requireNonNull($(byText(DRY_CLEANER_NAME))
-                .getAttribute("href")))).get(0).click();
+        getDcNameButton(DRY_CLEANER_NAME).click();
     }
 
-    public void clickDeleteButton () {
-        $(byAttribute("href", Objects.requireNonNull($(byText(DRY_CLEANER_NAME_UPDATED))
-                .getAttribute("href")).split(".com")[1].split("/edit")[0])).click();
+    public void clickDeleteButtonForUpdatedDc () {
+        getDcDeleteButton(DRY_CLEANER_NAME_UPDATED).click();
+    }
+
+    public void clickDeleteButtonForNotUpdatedDc () {
+        getDcDeleteButton(DRY_CLEANER_NAME).click();
     }
 
     public void clickUpdateButton () {
@@ -47,8 +45,7 @@ public class DryCleanersPage extends AllPages {
         openAdminLoginPage();
         authorizationAdmin();
         openDryCleanerPage();
-        $(byAttribute("href", Objects.requireNonNull($(byText(DRY_CLEANER_NAME))
-                .getAttribute("href")).split(".com")[1].split("/edit")[0])).click();
+        getDcDeleteButton(DRY_CLEANER_NAME).click();
         Selenide.switchTo().alert().accept();
     }
 
@@ -122,6 +119,10 @@ public class DryCleanersPage extends AllPages {
         success_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(DRY_CLEANER_UPDATE_SUCCESS_MESSAGE));
     }
 
+    public void checkDryCleanerDeleteSuccessMessage () {
+        success_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(DRY_CLEANER_DELETE_SUCCESS_MESSAGE));
+    }
+
     public void checkDryCleanerUpdateNameBlankError () {
         error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_BLANK_ERROR_EDIT_DC));
     }
@@ -146,7 +147,7 @@ public class DryCleanersPage extends AllPages {
         error_message.shouldBe(Condition.visible).shouldHave(Condition.exactText(NAME_ADDRESS_BLANK_ERROR_CREATE_DC));
     }
 
-    public void checkDryCleanerRemovedFromList () {
+    public void checkUpdatedDryCleanerRemovedFromList () {
         $(byText(DRY_CLEANER_NAME_UPDATED)).shouldNotBe(Condition.visible);
         $(byText(DRY_CLEANER_ADDRESS_UPDATED)).shouldNotBe(Condition.visible);
     }

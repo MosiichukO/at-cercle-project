@@ -23,6 +23,7 @@ public class TestData extends Credentials {
     public final String NAME_ADDRESS_BLANK_ERROR_CREATE_DC = "Can not create Dry Cleaner: Validation failed: Name can't be blank, Address can't be blank.";
     public final String DRY_CLEANER_CREATED_SUCCESS_MESSAGE = "Dry Cleaner was successfully created.";
     public final String DRY_CLEANER_UPDATE_SUCCESS_MESSAGE = "Dry Cleaner was successfully updated.";
+    public final String DRY_CLEANER_DELETE_SUCCESS_MESSAGE = "Dry Cleaner was successfully destroyed.";
     public final String EMAIL_BLANK_ERROR_CREATE_USER = "Email can't be blank";
     public final String PASSWORD_BLANK_ERROR_CREATE_USER = "Password can't be blank";
     public final String PASSWORD_INVALID_LENGTH_ERROR_CREATE_USER = "Password is too short (minimum is 6 characters)";
@@ -47,6 +48,7 @@ public class TestData extends Credentials {
     public final String USERS_PAGE_TITLE = "Users";
     public final String EDIT_USER_PAGE_TITLE = "%s - Users";
     public final String AUTHORIZATION_PAGE_TITLE = "User Sessions";
+    public final String DRY_CLEANER_ORDERS_PAGE_TITLE = "Dry Cleaner Orders";
 
     // Dropdowns' options
 

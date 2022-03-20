@@ -3,14 +3,42 @@ package API;
 import com.codeborne.selenide.WebDriverRunner;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static io.restassured.RestAssured.given;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class DryCleanerCrudApiTest extends ApiMethodsBase {
+
+    @BeforeAll
+    public void createTestDryCleaner () {
+        getAdminLoginPage();
+        adminAuthorization();
+        getDryCleanersPage();
+        postTestDryCleaner();
+    }
+
+    @Test
+    @Tag("C3509")
+    @DisplayName("Support user doesn't have access to GET /admin/dry_cleaners")
+    public void supportUserCanNotViewDryCleanersList () {
+        getAdminLoginPage();
+        supportUserAuthorization();
+
+        Response dryCleanersPage = given()
+                .baseUri(BASE_URL)
+                .basePath("/dry_cleaners")
+                .cookie("_cercle_backend_session", backend_session_cookie)
+                .cookie("guest_token", guest_token)
+                .contentType(ContentType.URLENC)
+                .when()
+                .get()
+                .then()
+                .extract()
+                .response();
+
+        checkUserSessionsTitleHtml(dryCleanersPage);
+    }
 
     @Test
     @Tag("C3463")
@@ -31,10 +59,8 @@ public class DryCleanerCrudApiTest extends ApiMethodsBase {
                     .formParam("dry_cleaner[address]", DRY_CLEANER_ADDRESS)
                     .formParam("dry_cleaner[status]", "active")
                     .formParam("authenticity_token", csrf_token)
-                .log().all()
                 .post()
                 .then()
-                .log().all()
                 .extract()
                 .response();
 

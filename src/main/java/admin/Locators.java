@@ -30,10 +30,27 @@ public class Locators extends TestData {
     public SelenideElement add_dry_cleaner_button = $(".btn.btn-primary");
     public SelenideElement name_field_create = $$("#dry_cleaner_name").get(0);
     public SelenideElement address_field_create = $$("#dry_cleaner_address").get(0);
-    public SelenideElement name_field_edit = $$("#dry_cleaner_name").get(1);
-    public SelenideElement address_field_edit = $$("#dry_cleaner_address").get(1);
+    public SelenideElement name_field_edit = $(By.name("dry_cleaner[name]"));
+    public SelenideElement address_field_edit = $(By.name("dry_cleaner[address]"));
     public SelenideElement create_button = $("#submitDryCleaner");
     public SelenideElement update_button = $("#submitEditDryCleaner");
+    public SelenideElement dry_cleaner_orders_tab = $(By.xpath("/html/body/div[1]/div/nav/ul/li[7]/ul/li[2]/a"));
+
+    public SelenideElement getDcEditButton(String dc_name) {
+        return $$(byAttribute("href", Objects.requireNonNull($(byText(dc_name))
+                .getAttribute("href")).split(".com")[1])).get(1);
+    }
+
+    public SelenideElement getDcNameButton(String dc_name) {
+        return $$(byAttribute("href", Objects.requireNonNull($(byText(dc_name))
+                .getAttribute("href")).split(".com")[1])).get(0);
+    }
+
+    public SelenideElement getDcDeleteButton(String dc_name) {
+        return $(byAttribute("href", Objects.requireNonNull($(byText(dc_name))
+                .getAttribute("href")).split(".com")[1].split("/edit")[0]));
+    }
+
     public ElementsCollection status_dropdown_create = $("#formDryCleaner.new_dry_cleaner").
             $("#dry_cleaner_status").$$(By.tagName("OPTION"));
     public ElementsCollection status_dropdown_edit = $("#formDryCleaner.edit_dry_cleaner")
@@ -52,11 +69,13 @@ public class Locators extends TestData {
     public SelenideElement member_since_start_filter_field = $("#q_created_at_gt");
     public SelenideElement email_filter_filed = $("#q_email_cont");
     public SelenideElement next_button = $(By.linkText("Next ›"));
-    public SelenideElement getUserEditButtonFromUsersList (String user_email) {
+
+    public SelenideElement getUserEditButtonFromUsersList(String user_email) {
         return $$(byAttribute("href", Objects.requireNonNull($(byText(user_email))
                 .getAttribute("href")))).get(1);
     }
-    public SelenideElement getUserEmailButtonFromUsersList (String user_email) {
+
+    public SelenideElement getUserEmailButtonFromUsersList(String user_email) {
         return $$(byAttribute("href", Objects.requireNonNull($(byText(user_email))
                 .getAttribute("href")))).get(0);
     }

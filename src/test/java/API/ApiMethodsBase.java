@@ -5,6 +5,11 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.Assertions;
 
+import java.util.Objects;
+
+import static com.codeborne.selenide.Selectors.byAttribute;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.$;
 import static io.restassured.RestAssured.given;
 
 public class ApiMethodsBase extends TestDataAPI {
@@ -12,6 +17,7 @@ public class ApiMethodsBase extends TestDataAPI {
     public static String csrf_token;
     public static String backend_session_cookie;
     public static String guest_token;
+    public static String test_dry_cleaner_id;
 
     public void getAdminLoginPage () {
         Response adminLoginPage = given()
@@ -26,22 +32,6 @@ public class ApiMethodsBase extends TestDataAPI {
         setNewCsrfToken(adminLoginPage);
         setBackendSessionCookie(adminLoginPage);
         setGuestToken(adminLoginPage);
-    }
-
-    public void getAdminPage () {
-        Response adminPage = given()
-                .baseUri(BASE_URL)
-                .cookie("_cercle_backend_session", backend_session_cookie)
-                .cookie("guest_token", guest_token)
-                .contentType(ContentType.URLENC)
-                .when()
-                .get()
-                .then()
-                .extract()
-                .response();
-
-        setNewCsrfToken(adminPage);
-        setBackendSessionCookie(adminPage);
     }
 
     public void getOrdersPage () {
@@ -136,9 +126,24 @@ public class ApiMethodsBase extends TestDataAPI {
 
     }
 
+    public void postTestDryCleaner () {
+        Response createTestDryCleaner = given()
+                .baseUri(BASE_URL)
+                .basePath("/dry_cleaners")
+                .cookie(BACKEND_SESSION_COOKIE_NAME, backend_session_cookie)
+                .cookie(GUEST_TOKEN_COOKIE_NAME, guest_token)
+                .contentType(ContentType.URLENC)
+                .formParam("commit", "Create")
+                .formParam("dry_cleaner[name]", DRY_CLEANER_NAME)
+                .formParam("dry_cleaner[address]", DRY_CLEANER_ADDRESS)
+                .formParam("dry_cleaner[status]", "active")
+                .formParam("authenticity_token", csrf_token)
+                .post();
+
+    }
+
     public void setNewCsrfToken (Response response) {
         csrf_token = response.htmlPath().getString("html.head.meta[3].@content");
-        System.out.println(csrf_token);
     }
 
     public void setBackendSessionCookie (Response response) {
@@ -159,5 +164,10 @@ public class ApiMethodsBase extends TestDataAPI {
 
     public void checkAuthorizationFailureRedirect (Response response) {
         Assertions.assertEquals(AUTHORIZATION_FAILURE_REDIRECT, response.getBody().asString());
+    }
+
+    public void checkUserSessionsTitleHtml (Response response) {
+        Assertions.assertEquals(AUTHORIZATION_PAGE_TITLE, response.htmlPath().getString("html.head.title"));
+
     }
 }

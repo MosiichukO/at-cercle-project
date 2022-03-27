@@ -63,6 +63,9 @@ public class Locators extends TestData {
     public SelenideElement admin_role_option = $(By.xpath("//div[text()='Admin']"));
     public SelenideElement dry_cleaner_role_option = $(By.xpath("//div[text()='Dry cleaner']"));
     public SelenideElement support_role_option = $(By.xpath("//div[text()='Support']"));
+    public SelenideElement charity_filter = $("#q_charity_status_eq");
+    public SelenideElement enabled_charity_option = $(By.xpath("//*[@id=\"q_charity_status_eq\"]/option[3]"));
+    public SelenideElement disabled_charity_option = $(By.xpath("//*[@id=\"q_charity_status_eq\"]/option[2]"));
     public SelenideElement search_button = $("#spree\\/user_search > div.actions.filter-actions > button");
     public SelenideElement users_table = $("#listing_users > tbody");
     public ElementsCollection user_info_lines = users_table.$$(By.tagName("TR"));

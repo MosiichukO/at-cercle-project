@@ -15,9 +15,7 @@ public class UsersPage extends AllPages {
         users_tab.click();
     }
 
-    public void clickRolesFilter() {
-        roles_filter.click();
-    }
+    public void clickRolesFilter() {roles_filter.click();}
 
     public void clickAdminRoleOption() {
         admin_role_option.click();
@@ -30,6 +28,12 @@ public class UsersPage extends AllPages {
     public void clickSupportRoleOption() {
         support_role_option.click();
     }
+
+    public void clickCharityFilter() {charity_filter.click();}
+
+    public void clickEnabledCharityOption() {enabled_charity_option.click();}
+
+    public void clickDisabledCharityOption() {disabled_charity_option.click();}
 
     public void clickSearchButton() {
         search_button.click();
@@ -205,6 +209,12 @@ public class UsersPage extends AllPages {
         }
     }
 
+    public void checkUsersCharityInList(String charity) {
+        for (com.codeborne.selenide.SelenideElement selenideElement : user_info_lines) {
+            selenideElement.find(By.xpath("td[3]")).shouldHave(Condition.exactText(charity));
+        }
+    }
+
     public void checkAdminOnlyInList() {
         checkUsersRoleInList("Admin");
     }
@@ -233,6 +243,14 @@ public class UsersPage extends AllPages {
 
     public void checkDryCleanerAbsentInList() {
         checkTwoRolesInList("Dry cleaner");
+    }
+
+    public void checkEnabledCharityUsersInList() {
+        checkUsersCharityInList("Enabled");
+    }
+
+    public void checkDisabledCharityUsersInList() {
+        checkUsersCharityInList("Disabled");
     }
 
     public void checkFilterResultsBySupportEmail() {

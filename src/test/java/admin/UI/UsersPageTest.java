@@ -118,6 +118,28 @@ public class UsersPageTest extends UsersPage {
             clickSearchButton();
             checkFilterResultsByPartOfEmail();
         }
+
+        @Test
+        @Order(10)
+        @Tag("C6379")
+        @DisplayName("If Charity filter with Enabled option is applied, only users with charity label are displayed")
+        public void usersFilterByEnabledCharity () {
+            clickCharityFilter();
+            clickEnabledCharityOption();
+            clickSearchButton();
+            checkEnabledCharityUsersInList();
+        }
+
+        @Test
+        @Order(11)
+        @Tag("C6380")
+        @DisplayName("If Charity filter with Disabled option is applied, only users without charity label are are displayed")
+        public void usersFilterByDisabledCharity () {
+            clickCharityFilter();
+            clickDisabledCharityOption();
+            clickSearchButton();
+            checkDisabledCharityUsersInList();
+        }
     }
 
     @Nested

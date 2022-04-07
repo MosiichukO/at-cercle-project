@@ -21,6 +21,14 @@ public class DryCleanerPageTest extends DryCleanersPage {
 
         @Test
         @Order(1)
+        @Tag("C3502")
+        @DisplayName("By clicking Dry Cleaner tab, Dry cleaner page is opened")
+        public void dryCleanersPageOpenedByClickingDryCleanersTab() {
+            checkDryCleanersPageIsOpened();
+        }
+
+        @Test
+        @Order(2)
         @Tag("C3457")
         @DisplayName("Add Dry Cleaner modal is opened by clicking Add Dry Cleaner button")
         public void addDryCleanerModalOpens() {
@@ -29,7 +37,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(2)
+        @Order(3)
         @Tag("C3458")
         @DisplayName("Status drop-down contains options: Active and Non active [Add Dry Cleaner modal]")
         public void statusDropDownOptionsCreateModal() {
@@ -38,7 +46,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(3)
+        @Order(4)
         @Tag("C3459")
         @DisplayName("Name can't be blank error if Name is empty [Add Dry Cleaner modal]")
         public void nameCanNotBeBlankErrorCreateModal() {
@@ -49,7 +57,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(4)
+        @Order(5)
         @Tag("C3460")
         @DisplayName("Address can't be blank error if Address is empty [Add Dry Cleaner modal]")
         public void addressCanNotBeBlankErrorCreateModal() {
@@ -60,7 +68,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(5)
+        @Order(6)
         @Tag("C3461")
         @DisplayName("Name can't be blank, Address can't be blank error if both fields are empty [Add Dry Cleaner modal]")
         public void nameAndAddressCanNotBeBlankErrorCreateModal() {
@@ -70,7 +78,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(6)
+        @Order(7)
         @Tag("C3462")
         @DisplayName("Dry Cleaner is created if both fields are not empty [Add Dry Cleaner modal]")
         public void dryCleanerCreation() {
@@ -82,7 +90,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(7)
+        @Order(8)
         @Tag("C3465")
         @DisplayName("Dry Cleaner creation success message")
         public void dryCleanerCreationSuccessMessage() {
@@ -94,7 +102,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(8)
+        @Order(9)
         @Tag("C3466")
         @DisplayName("Edit Dry Cleaner modal is opened by clicking Edit button")
         public void editDryCleanerModalOpenedByClickingEditButton() {
@@ -103,7 +111,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(9)
+        @Order(10)
         @Tag("C3467")
         @DisplayName("Status drop-down contains options: Active and Non active [Edit Dry Cleaner modal]")
         public void statusDropDownOptionsEditModal() {
@@ -112,7 +120,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(10)
+        @Order(11)
         @Tag("C3468")
         @DisplayName("Name can't be blank error if Name is empty [Edit Dry Cleaner modal]")
         public void nameCanNotBeBlankErrorEditModal() {
@@ -123,7 +131,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(11)
+        @Order(12)
         @Tag("C3469")
         @DisplayName("Address can't be blank error if Address is empty [Edit Dry Cleaner modal]")
         public void addressCanNotBeBlankErrorEditModal() {
@@ -134,7 +142,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(12)
+        @Order(13)
         @Tag("C3470")
         @DisplayName("Name can't be blank, Address can't be blank error if both fields are empty [Edit Dry Cleaner modal]")
         public void nameAndAddressCanNotBeBlankErrorEditModal() {
@@ -146,7 +154,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(13)
+        @Order(14)
         @Tag("C3471")
         @DisplayName("Dry Cleaner is updated if both fields are not empty [Edit Dry Cleaner modal]")
         public void dryCleanerUpdate() {
@@ -158,7 +166,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(14)
+        @Order(15)
         @Tag("C3472")
         @DisplayName("Edit Dry Cleaner modal is opened by clicking Dry Cleaner's name")
         public void editDryCleanerModalOpenedByClickingDryCleanerName() {
@@ -167,21 +175,13 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(15)
+        @Order(16)
         @Tag("C4137")
         @DisplayName("Dry Cleaner was successfully updated. message if Dry Cleaner was updated")
         public void successDryCleanerUpdateMessage() {
             clickEditButton();
             clickUpdateButton();
             checkDryCleanerUpdateSuccessMessage();
-        }
-
-        @Test
-        @Order(16)
-        @Tag("C3502")
-        @DisplayName("By clicking Dry Cleaner tab, Dry cleaner page is opened")
-        public void dryCleanersPageOpenedByClickingDryCleanersTab() {
-            checkDryCleanersPageIsOpened();
         }
 
         @Test

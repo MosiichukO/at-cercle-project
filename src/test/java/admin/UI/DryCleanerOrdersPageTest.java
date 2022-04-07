@@ -1,6 +1,7 @@
 package admin.UI;
 
 import admin.Pages.DryCleanerOrdersPage;
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 
 public class DryCleanerOrdersPageTest extends DryCleanerOrdersPage {
@@ -24,5 +25,10 @@ public class DryCleanerOrdersPageTest extends DryCleanerOrdersPage {
             checkDryCleanerOrdersPageIsOpened();
         }
 
+    }
+
+    @AfterEach
+    public void closeDriver() {
+        WebDriverRunner.driver().close();
     }
 }

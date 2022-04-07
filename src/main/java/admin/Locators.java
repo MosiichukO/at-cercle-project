@@ -98,5 +98,6 @@ public class Locators extends TestData {
     public SelenideElement user_support_checkbox = $("#user_spree_role_support");
     public SelenideElement user_dry_cleaner_checkbox = $("#user_spree_role_dry_cleaner");
 
-
+    // Specials page locators
+    public SelenideElement specials_tab = $("fa.fa-object-group.icon_link.with-tip");
 }

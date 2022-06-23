@@ -167,6 +167,28 @@ public class DryCleanerPageTest extends DryCleanersPage {
 
         @Test
         @Order(15)
+        @Tag("C12489")
+        @DisplayName("If filter by Active status is applied, only Dry Cleaners with Active status are displayed in the table")
+        public void checkFilterByActiveStatus () {
+            clickStatusDropdown();
+            chooseActiveStatusOption();
+            clickSearchButton();
+            checkActiveStatusDryCleanersOnlyInList();
+        }
+
+        @Test
+        @Order(16)
+        @Tag("C12490")
+        @DisplayName("If filter by Non Active status is applied, only Dry Cleaners with Non Active status are displayed in the table")
+        public void checkFilterByNonActiveStatus () {
+            clickStatusDropdown();
+            chooseNonActiveStatusOption();
+            clickSearchButton();
+            checkNonActiveStatusDryCleanersOnlyInList();
+        }
+
+        @Test
+        @Order(17)
         @Tag("C3472")
         @DisplayName("Edit Dry Cleaner modal is opened by clicking Dry Cleaner's name")
         public void editDryCleanerModalOpenedByClickingDryCleanerName() {
@@ -175,7 +197,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(16)
+        @Order(18)
         @Tag("C4137")
         @DisplayName("Dry Cleaner was successfully updated. message if Dry Cleaner was updated")
         public void successDryCleanerUpdateMessage() {
@@ -185,7 +207,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(17)
+        @Order(19)
         @Tag("C3510")
         @DisplayName("By clicking Delete button, Dry cleaner is removed from dry cleaner's list")
         public void dryCleanerRemovedFromListByClickingDeleteButton() {
@@ -195,7 +217,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(18)
+        @Order(20)
         @Tag("C5475")
         @DisplayName("Dry Cleaner was successfully destroyed. message if Dry Cleaner was deleted")
         public void successDryCleanerDeleteMessage() {
@@ -218,6 +240,21 @@ public class DryCleanerPageTest extends DryCleanersPage {
             openAdminLoginPage();
             authorizationSupportUser();
             checkDryCleanersTabIsNotVisible();
+        }
+    }
+
+    @Nested
+    @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+    class DryCleanerRoleTest {
+
+        @Test
+        @Order(1)
+        @Tag("C12486")
+        @DisplayName("By clicking Dry Cleaners tab, Dry Cleaners page is opened for Dry cleaner user")
+        public void dryCleanersPageOpenedByClickingDryCleanersTabForDryCleaner() {
+            openAdminLoginPage();
+            authorizationDryCleanerUser();
+            checkDryCleanersPageIsOpened();
         }
     }
 

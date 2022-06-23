@@ -17,10 +17,10 @@ public class TestData extends Credentials {
     public final String LOGOUT_SUCCESS_MESSAGE = "Signed out successfully.";
     public final String NAME_BLANK_ERROR_EDIT_DC = "Can not update Dry Cleaner: Name can't be blank.";
     public final String ADDRESS_BLANK_ERROR_EDIT_DC = "Can not update Dry Cleaner: Address can't be blank.";
-    public final String NAME_ADDRESS_BLANK_ERROR_EDIT_DC = "Can not update Dry Cleaner: Name can't be blank, Address can't be blank.";
-    public final String NAME_BLANK_ERROR_CREATE_DC = "Can not create Dry Cleaner: Validation failed: Name can't be blank.";
-    public final String ADDRESS_BLANK_ERROR_CREATE_DC = "Can not create Dry Cleaner: Validation failed: Address can't be blank.";
-    public final String NAME_ADDRESS_BLANK_ERROR_CREATE_DC = "Can not create Dry Cleaner: Validation failed: Name can't be blank, Address can't be blank.";
+    public final String NAME_ADDRESS_BLANK_ERROR_EDIT_DC = "Can not update Dry Cleaner: Name can't be blank.";
+    public final String NAME_BLANK_ERROR_CREATE_DC = "Can not create Dry Cleaner: Name can't be blank.";
+    public final String ADDRESS_BLANK_ERROR_CREATE_DC = "Can not create Dry Cleaner: Address can't be blank.";
+    public final String NAME_ADDRESS_BLANK_ERROR_CREATE_DC = "Can not create Dry Cleaner: Name can't be blank.";
     public final String DRY_CLEANER_CREATED_SUCCESS_MESSAGE = "Dry Cleaner was successfully created.";
     public final String DRY_CLEANER_UPDATE_SUCCESS_MESSAGE = "Dry Cleaner was successfully updated.";
     public final String DRY_CLEANER_DELETE_SUCCESS_MESSAGE = "Dry Cleaner was successfully destroyed.";

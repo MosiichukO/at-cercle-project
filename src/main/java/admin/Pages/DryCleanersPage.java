@@ -1,6 +1,7 @@
 package admin.Pages;
 
 import com.codeborne.selenide.*;
+import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.exactTexts;
 import static com.codeborne.selenide.CollectionCondition.size;
@@ -41,6 +42,10 @@ public class DryCleanersPage extends AllPages {
         create_button.click();
     }
 
+    public void clickStatusDropdown () {dry_cleaners_status_dropdown.click();}
+
+    public void clickSearchButton () {dry_cleaners_search_button.click();}
+
     public void deleteCreatedDryCleaner () {
         openAdminLoginPage();
         authorizationAdmin();
@@ -76,6 +81,10 @@ public class DryCleanersPage extends AllPages {
     public void confirmDryCleanerDelete () {
         Selenide.switchTo().alert().accept();
     }
+
+    public void chooseActiveStatusOption () {dry_cleaners_active_status_option.click();}
+
+    public void chooseNonActiveStatusOption () {dry_cleaners_non_active_status_option.click();}
 
     public void checkDryCleanersPageIsOpened () {
         page_title.shouldHave(Condition.attribute("text", DRY_CLEANERS_PAGE_TITLE));
@@ -150,5 +159,19 @@ public class DryCleanersPage extends AllPages {
     public void checkUpdatedDryCleanerRemovedFromList () {
         $(byText(DRY_CLEANER_NAME_UPDATED)).shouldNotBe(Condition.visible);
         $(byText(DRY_CLEANER_ADDRESS_UPDATED)).shouldNotBe(Condition.visible);
+    }
+
+    public void checkDryCleanerStatusInList (String status) {
+        for (com.codeborne.selenide.SelenideElement selenideElement : dry_cleaners_info_lines) {
+            selenideElement.find(By.xpath("td[6]")).shouldHave(Condition.exactText(status));
+        }
+    }
+
+    public void checkActiveStatusDryCleanersOnlyInList () {
+        checkDryCleanerStatusInList("Active");
+    }
+
+    public void checkNonActiveStatusDryCleanersOnlyInList () {
+        checkDryCleanerStatusInList("Non active");
     }
 }

@@ -1,6 +1,7 @@
 package admin.UI;
 
 import admin.Pages.DryCleanersPage;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 
@@ -244,6 +245,113 @@ public class DryCleanerPageTest extends DryCleanersPage {
             setDayTodayToCreatedToDateField();
             clickSearchButton();
             checkDryCleanerCreatedAtToDate();
+        }
+
+        @Test
+        @Order(23)
+        @Tag("C12493")
+        @DisplayName("It is possible to filter Dry cleaners by Created at From and Created at To date")
+        public void checkFilterByCreatedFromAndToDates () {
+            setDayBeforeTodayToCreatedFromDateField();
+            setDayTomorrowToCreatedToDateField();
+            clickSearchButton();
+            checkDryCleanerCreatedAtFromDate();
+        }
+
+        @Test
+        @Order(24)
+        @Tag("C12517")
+        @DisplayName("By first click on Id column's name, Dry Cleaners are sorted by id in DESC order")
+        public void checkDescSortingById () {
+            clickIdColumn();
+            checkDescSortingByIdColumn();
+
+        }
+
+        @Test
+        @Order(25)
+        @Tag("C12518")
+        @DisplayName("By second click on Id column's name, Dry Cleaners are sorted by id in ASC order")
+        public void checkAscSortingById () {
+            clickIdColumn();
+            clickIdColumn();
+            checkAscSortingByIdColumn();
+        }
+
+        @Test
+        @Order(26)
+        @Tag("C12519")
+        @DisplayName("By first click on Name column's name, Dry Cleaners are sorted by name in DESC order")
+        public void checkDescSortingByName () {
+            clickNameColumn();
+            checkDescSortingByNameColumn();
+        }
+
+        @Test
+        @Order(27)
+        @Tag("C12520")
+        @DisplayName("By second click on Name column's name, Dry Cleaners are sorted by name in ASC order")
+        public void checkAscSortingByName () {
+            clickNameColumn();
+            clickNameColumn();
+            checkAscSortingByNameColumn();
+        }
+
+        @Test
+        @Order(28)
+        @Tag("C12521")
+        @DisplayName("By first click on Address column's name, Dry Cleaners are sorted by address in DESC order")
+        public void checkDescSortingByAddress () {
+            clickAddressColumn();
+            checkDescSortingByAddressColumn();
+        }
+
+        @Test
+        @Order(29)
+        @Tag("C12522")
+        @DisplayName("By second click on Address column's name, Dry Cleaners are sorted by address in ASC order")
+        public void checkAscSortingByAddress () {
+            clickAddressColumn();
+            clickAddressColumn();
+            checkAscSortingByAddressColumn();
+        }
+
+        @Test
+        @Order(30)
+        @Tag("C12523")
+        @DisplayName("By first click on Contact Details column's name, Dry Cleaners are sorted by contact details in DESC order")
+        public void checkDescSortingByContactDetails () {
+            clickContactDetailsColumn();
+            checkDescSortingByContactDetailsColumn();
+        }
+
+        @Test
+        @Order(31)
+        @Tag("C12524")
+        @DisplayName("By second click on Contact Details column's name, Dry Cleaners are sorted by contact details in ASC order")
+        public void checkAscSortingByContactDetails () {
+            clickContactDetailsColumn();
+            clickContactDetailsColumn();
+            checkAscSortingByContactDetailsColumn();
+        }
+
+        @Test
+        @Order(32)
+        @Tag("C12525")
+        @DisplayName("By first click on User column's name, Dry Cleaners are sorted by user in DESC order")
+        public void checkDescSortingByUser () {
+            clickUserColumn();
+            checkDescSortingByUserColumn();
+        }
+
+        @Test
+        @Order(33)
+        @Tag("C12526")
+        @DisplayName("By second click on User column's name, Dry Cleaners are sorted by user in ASC order")
+        public void checkAscSortingByuser () {
+            clickUserColumn();
+            clickUserColumn();
+            checkAscSortingByUserColumn();
         }
 
         @Test

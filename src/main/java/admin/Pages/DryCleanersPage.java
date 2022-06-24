@@ -1,10 +1,11 @@
 package admin.Pages;
 
 import com.codeborne.selenide.*;
+import net.jodah.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.CollectionCondition.exactTexts;
-import static com.codeborne.selenide.CollectionCondition.size;
+
+import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
@@ -40,6 +41,26 @@ public class DryCleanersPage extends AllPages {
 
     public void clickCreateButton() {
         create_button.click();
+    }
+
+    public void clickIdColumn() {
+        dry_cleaners_id_column_name.click();
+    }
+
+    public void clickNameColumn() {
+        dry_cleaners_name_column_name.click();
+    }
+
+    public void clickAddressColumn() {
+        dry_cleaners_address_column_name.click();
+    }
+
+    public void clickContactDetailsColumn() {
+        dry_cleaners_contact_details_column_name.click();
+    }
+
+    public void clickUserColumn() {
+        dry_cleaners_user_column_name.click();
     }
 
     public void clickStatusDropdown() {
@@ -88,6 +109,10 @@ public class DryCleanersPage extends AllPages {
 
     public void setDayTodayToCreatedToDateField() {
         dry_cleaners_created_at_to_field.setValue(TODAY_DATE);
+    }
+
+    public void setDayTomorrowToCreatedToDateField() {
+        dry_cleaners_created_at_to_field.setValue(TOMORROW_DATE);
     }
 
     public void clearNameField() {
@@ -225,7 +250,69 @@ public class DryCleanersPage extends AllPages {
 
     public void checkDryCleanerCreatedAtToDate() {
         for (com.codeborne.selenide.SelenideElement selenideElement : dry_cleaners_info_lines) {
-                selenideElement.find(By.xpath("td[7]")).shouldNotHave(Condition.exactText(TODAY_DATE));
+            selenideElement.find(By.xpath("td[7]")).shouldNotHave(Condition.exactText(TODAY_DATE));
         }
     }
+
+    public void checkDescSortingByIdColumn() {
+        for (int i = 1; i < dry_cleaners_info_lines.size(); i++) {
+            int id1 = Integer.parseInt(dry_cleaners_info_lines.get(i - 1).find(By.xpath("td[1]")).getText());
+            int id2 = Integer.parseInt(dry_cleaners_info_lines.get(i).find(By.xpath("td[1]")).getText());
+            Assert.isTrue(id2 < id1, "Incorrect sorting");
+        }
+    }
+
+    public void checkAscSortingByIdColumn() {
+        for (int i = 1; i < dry_cleaners_info_lines.size(); i++) {
+            int id1 = Integer.parseInt(dry_cleaners_info_lines.get(i - 1).find(By.xpath("td[1]")).getText());
+            int id2 = Integer.parseInt(dry_cleaners_info_lines.get(i).find(By.xpath("td[1]")).getText());
+            Assert.isTrue(id2 > id1, "Incorrect sorting");
+        }
+    }
+
+    public void checkSortingForStrings (String column_td, String sort_type) {
+        for (int i = 1; i < dry_cleaners_info_lines.size(); i++) {
+            String name1 = dry_cleaners_info_lines.get(i - 1).find(By.xpath(column_td)).getText();
+            String name2 = dry_cleaners_info_lines.get(i).find(By.xpath(column_td)).getText();
+            int compare = name1.compareToIgnoreCase(name2);
+            if (sort_type.equals("DESC")) {
+                Assert.isTrue(compare >= 0, "Incorrect sorting");
+            } else if (sort_type.equals("ASC")) {
+                Assert.isTrue(compare <= 0, "Incorrect sorting");
+            }
+        }
+    }
+
+    public void checkDescSortingByNameColumn() {
+        checkSortingForStrings("td[2]", "DESC");
+    }
+
+    public void checkAscSortingByNameColumn() {
+        checkSortingForStrings("td[2]", "ASC");
+    }
+
+    public void checkDescSortingByAddressColumn() {
+        checkSortingForStrings("td[3]", "DESC");
+    }
+
+    public void checkAscSortingByAddressColumn() {
+        checkSortingForStrings("td[3]", "ASC");
+    }
+
+    public void checkDescSortingByContactDetailsColumn() {
+        checkSortingForStrings("td[4]", "DESC");
+    }
+
+    public void checkAscSortingByContactDetailsColumn() {
+        checkSortingForStrings("td[4]", "ASC");
+    }
+
+    public void checkDescSortingByUserColumn() {
+        checkSortingForStrings("td[5]", "DESC");
+    }
+
+    public void checkAscSortingByUserColumn() {
+        checkSortingForStrings("td[5]", "ASC");
+    }
+
 }

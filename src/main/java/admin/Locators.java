@@ -40,11 +40,18 @@ public class Locators extends TestData {
     public SelenideElement dry_cleaners_non_active_status_option = $("#q_status_eq > option:nth-child(3)");
     public SelenideElement dry_cleaners_search_button = $("#dry_cleaner_search > div.actions.filter-actions > button");
     public SelenideElement dry_cleaners_table = $("#listing_dry_cleaners > tbody");
-    public ElementsCollection dry_cleaners_info_lines = dry_cleaners_table.$$(By.tagName("TR"));
     public SelenideElement dry_cleaners_name_search_field = $("#q_name_cont");
     public SelenideElement dry_cleaners_address_search_field = $("#q_address_cont");
     public SelenideElement dry_cleaners_created_at_from_field = $("#q_created_at_gt");
     public SelenideElement dry_cleaners_created_at_to_field = $("#q_created_at_lt");
+    public SelenideElement dry_cleaners_id_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(1) > a");
+    public SelenideElement dry_cleaners_name_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(2) > a");
+    public SelenideElement dry_cleaners_address_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(3) > a");
+    public SelenideElement dry_cleaners_contact_details_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(4) > a");
+    public SelenideElement dry_cleaners_user_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(5) > a");
+
+
+
 
     public SelenideElement getDcEditButton(String dc_name) {
         return $$(byAttribute("href", Objects.requireNonNull($(byText(dc_name))
@@ -65,6 +72,7 @@ public class Locators extends TestData {
             $("#dry_cleaner_status").$$(By.tagName("OPTION"));
     public ElementsCollection status_dropdown_edit = $("#formDryCleaner.edit_dry_cleaner")
             .$("#dry_cleaner_status").$$(By.tagName("OPTION"));
+    public ElementsCollection dry_cleaners_info_lines = dry_cleaners_table.$$(By.tagName("TR"));
 
     // Users page locators
     public SelenideElement users_tab = $(".fa.fa-user.icon_link.with-tip");
@@ -78,7 +86,6 @@ public class Locators extends TestData {
     public SelenideElement disabled_charity_option = $(By.xpath("//*[@id=\"q_charity_status_eq\"]/option[2]"));
     public SelenideElement search_button = $("#spree\\/user_search > div.actions.filter-actions > button");
     public SelenideElement users_table = $("#listing_users > tbody");
-    public ElementsCollection user_info_lines = users_table.$$(By.tagName("TR"));
     public SelenideElement member_since_start_filter_field = $("#q_created_at_gt");
     public SelenideElement email_filter_filed = $("#q_email_cont");
     public SelenideElement next_button = $(By.linkText("Next ›"));
@@ -92,6 +99,8 @@ public class Locators extends TestData {
         return $$(byAttribute("href", Objects.requireNonNull($(byText(user_email))
                 .getAttribute("href")))).get(0);
     }
+
+    public ElementsCollection user_info_lines = users_table.$$(By.tagName("TR"));
 
     // Create User and Edit User pages locators
     public SelenideElement new_user_create_button = $(".btn.btn-primary");

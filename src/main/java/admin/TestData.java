@@ -91,4 +91,5 @@ public class TestData extends Credentials {
 
     public final String TODAY_DATE = String.valueOf(LocalDate.now());
     public final String YESTERDAY_DATE = String.valueOf(LocalDate.now().minusDays(1));
+    public final String TOMORROW_DATE = String.valueOf(LocalDate.now().plusDays(1));
 }

@@ -167,6 +167,25 @@ public class DryCleanerPageTest extends DryCleanersPage {
 
         @Test
         @Order(15)
+        @Tag("C3472")
+        @DisplayName("Edit Dry Cleaner modal is opened by clicking Dry Cleaner's name")
+        public void editDryCleanerModalOpenedByClickingDryCleanerName() {
+            clickDryCleanerName();
+            checkEditDryCleanerModalOpened();
+        }
+
+        @Test
+        @Order(16)
+        @Tag("C4137")
+        @DisplayName("Dry Cleaner was successfully updated. message if Dry Cleaner was updated")
+        public void successDryCleanerUpdateMessage() {
+            clickEditButton();
+            clickUpdateButton();
+            checkDryCleanerUpdateSuccessMessage();
+        }
+
+        @Test
+        @Order(17)
         @Tag("C12489")
         @DisplayName("If filter by Active status is applied, only Dry Cleaners with Active status are displayed in the table")
         public void checkFilterByActiveStatus () {
@@ -177,7 +196,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(16)
+        @Order(18)
         @Tag("C12490")
         @DisplayName("If filter by Non Active status is applied, only Dry Cleaners with Non Active status are displayed in the table")
         public void checkFilterByNonActiveStatus () {
@@ -188,22 +207,43 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(17)
-        @Tag("C3472")
-        @DisplayName("Edit Dry Cleaner modal is opened by clicking Dry Cleaner's name")
-        public void editDryCleanerModalOpenedByClickingDryCleanerName() {
-            clickDryCleanerName();
-            checkEditDryCleanerModalOpened();
+        @Order(19)
+        @Tag("C12487")
+        @DisplayName("It is possible to filter Dry cleaners by Name with partial match")
+        public void checkSearchByName () {
+            setExistingDryCleanerNameToNameField();
+            clickSearchButton();
+            checkDryCleanerNameInList();
         }
 
         @Test
-        @Order(18)
-        @Tag("C4137")
-        @DisplayName("Dry Cleaner was successfully updated. message if Dry Cleaner was updated")
-        public void successDryCleanerUpdateMessage() {
-            clickEditButton();
-            clickUpdateButton();
-            checkDryCleanerUpdateSuccessMessage();
+        @Order(20)
+        @Tag("C12488")
+        @DisplayName("It is possible to filter Dry cleaners by Address with partial match")
+        public void checkSearchByAddress () {
+            setExistingDryCleanerAddressToAddressField();
+            clickSearchButton();
+            checkDryCleanerNameInList();
+        }
+
+        @Test
+        @Order(21)
+        @Tag("C12491")
+        @DisplayName("It is possible to filter Dry cleaners by Created at From date")
+        public void checkFilterByCreatedFromDate () {
+            setDayBeforeTodayToCreatedFromDateField();
+            clickSearchButton();
+            checkDryCleanerCreatedAtFromDate();
+        }
+
+        @Test
+        @Order(22)
+        @Tag("C12492")
+        @DisplayName("It is possible to filter Dry cleaners by Created at To date")
+        public void checkFilterByCreatedToDate () {
+            setDayTodayToCreatedToDateField();
+            clickSearchButton();
+            checkDryCleanerCreatedAtToDate();
         }
 
         @Test

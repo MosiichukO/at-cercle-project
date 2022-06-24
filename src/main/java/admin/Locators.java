@@ -41,6 +41,10 @@ public class Locators extends TestData {
     public SelenideElement dry_cleaners_search_button = $("#dry_cleaner_search > div.actions.filter-actions > button");
     public SelenideElement dry_cleaners_table = $("#listing_dry_cleaners > tbody");
     public ElementsCollection dry_cleaners_info_lines = dry_cleaners_table.$$(By.tagName("TR"));
+    public SelenideElement dry_cleaners_name_search_field = $("#q_name_cont");
+    public SelenideElement dry_cleaners_address_search_field = $("#q_address_cont");
+    public SelenideElement dry_cleaners_created_at_from_field = $("#q_created_at_gt");
+    public SelenideElement dry_cleaners_created_at_to_field = $("#q_created_at_lt");
 
     public SelenideElement getDcEditButton(String dc_name) {
         return $$(byAttribute("href", Objects.requireNonNull($(byText(dc_name))

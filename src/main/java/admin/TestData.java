@@ -2,6 +2,10 @@ package admin;
 
 import org.apache.commons.lang.RandomStringUtils;
 
+import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class TestData extends Credentials {
 
@@ -83,4 +87,8 @@ public class TestData extends Credentials {
     public final String MEMBER_SINCE_START_DATE = "2022-02-17";
     public final String PART_OF_EMAIL_FOR_FILTERING = "@support";
 
+    // Dates
+
+    public final String TODAY_DATE = String.valueOf(LocalDate.now());
+    public final String YESTERDAY_DATE = String.valueOf(LocalDate.now().minusDays(1));
 }

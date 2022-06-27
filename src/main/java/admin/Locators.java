@@ -49,6 +49,10 @@ public class Locators extends TestData {
     public SelenideElement dry_cleaners_address_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(3) > a");
     public SelenideElement dry_cleaners_contact_details_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(4) > a");
     public SelenideElement dry_cleaners_user_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(5) > a");
+    public SelenideElement dry_cleaners_status_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(6) > a");
+    public SelenideElement dry_cleaners_created_at_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(7) > a");
+
+
 
 
 

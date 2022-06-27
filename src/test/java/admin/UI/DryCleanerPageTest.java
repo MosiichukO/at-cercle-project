@@ -5,6 +5,7 @@ import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 
+import java.text.ParseException;
 
 
 public class DryCleanerPageTest extends DryCleanersPage {
@@ -71,7 +72,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @Test
         @Order(6)
         @Tag("C3461")
-        @DisplayName("Name can't be blank, Address can't be blank error if both fields are empty [Add Dry Cleaner modal]")
+        @DisplayName("Name can't be blank error if both fields are empty [Add Dry Cleaner modal]")
         public void nameAndAddressCanNotBeBlankErrorCreateModal() {
             clickAddDryCleanerButton();
             clickCreateButton();
@@ -145,7 +146,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @Test
         @Order(13)
         @Tag("C3470")
-        @DisplayName("Name can't be blank, Address can't be blank error if both fields are empty [Edit Dry Cleaner modal]")
+        @DisplayName("Name can't be blank error if both fields are empty [Edit Dry Cleaner modal]")
         public void nameAndAddressCanNotBeBlankErrorEditModal() {
             clickEditButton();
             clearNameField();
@@ -348,14 +349,52 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @Order(33)
         @Tag("C12526")
         @DisplayName("By second click on User column's name, Dry Cleaners are sorted by user in ASC order")
-        public void checkAscSortingByuser () {
+        public void checkAscSortingByUser () {
             clickUserColumn();
             clickUserColumn();
             checkAscSortingByUserColumn();
         }
 
         @Test
-        @Order(19)
+        @Order(33)
+        @Tag("C12527")
+        @DisplayName("By first click on Status column's name, Dry Cleaners are sorted by status in DESC order")
+        public void checkDescSortingByStatus () {
+            clickStatusColumn();
+            checkDescSortingByStatusColumn();
+        }
+
+        @Test
+        @Order(34)
+        @Tag("C12528")
+        @DisplayName("By second click on Status column's name, Dry Cleaners are sorted by status in ASC order")
+        public void checkAscSortingByStatus () {
+            clickStatusColumn();
+            clickStatusColumn();
+            checkAscSortingByStatusColumn();
+        }
+
+        @Test
+        @Order(35)
+        @Tag("C12529")
+        @DisplayName("By first click on Created at column's name, Dry Cleaners are sorted by created at date in DESC order")
+        public void checkDescSortingByCreatedAt () throws ParseException {
+            clickCreatedAtColumn();
+            checkDescSortingByCreatedAtColumn();
+        }
+
+        @Test
+        @Order(36)
+        @Tag("C12530")
+        @DisplayName("By second click on Created at column's name, Dry Cleaners are sorted by created at date in ASC order")
+        public void checkAscSortingByCreatedAt () throws ParseException {
+            clickCreatedAtColumn();
+            clickCreatedAtColumn();
+            checkAscSortingByCreatedAtColumn();
+        }
+
+        @Test
+        @Order(37)
         @Tag("C3510")
         @DisplayName("By clicking Delete button, Dry cleaner is removed from dry cleaner's list")
         public void dryCleanerRemovedFromListByClickingDeleteButton() {
@@ -365,7 +404,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         }
 
         @Test
-        @Order(20)
+        @Order(38)
         @Tag("C5475")
         @DisplayName("Dry Cleaner was successfully destroyed. message if Dry Cleaner was deleted")
         public void successDryCleanerDeleteMessage() {

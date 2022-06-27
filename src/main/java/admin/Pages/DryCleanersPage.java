@@ -5,6 +5,10 @@ import net.jodah.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static com.codeborne.selenide.CollectionCondition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -61,6 +65,14 @@ public class DryCleanersPage extends AllPages {
 
     public void clickUserColumn() {
         dry_cleaners_user_column_name.click();
+    }
+
+    public void clickStatusColumn() {
+        dry_cleaners_status_column_name.click();
+    }
+
+    public void clickCreatedAtColumn() {
+        dry_cleaners_created_at_column_name.click();
     }
 
     public void clickStatusDropdown() {
@@ -313,6 +325,36 @@ public class DryCleanersPage extends AllPages {
 
     public void checkAscSortingByUserColumn() {
         checkSortingForStrings("td[5]", "ASC");
+    }
+
+    public void checkDescSortingByStatusColumn() {
+        checkSortingForStrings("td[6]", "DESC");
+    }
+
+    public void checkAscSortingByStatusColumn() {
+        checkSortingForStrings("td[6]", "ASC");
+    }
+
+    public void checkSortingForDates (String column_td, String sort_type) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        for (int i = 1; i < dry_cleaners_info_lines.size(); i++) {
+            Date date1 = sdf.parse(dry_cleaners_info_lines.get(i - 1).find(By.xpath(column_td)).getText());
+            Date date2 = sdf.parse(dry_cleaners_info_lines.get(i).find(By.xpath(column_td)).getText());
+            int compare = date1.compareTo(date2);
+            if (sort_type.equals("DESC")) {
+                Assert.isTrue(compare >= 0, "Incorrect sorting");
+            } else if (sort_type.equals("ASC")) {
+                Assert.isTrue(compare <= 0, "Incorrect sorting");
+            }
+        }
+    }
+
+    public void checkDescSortingByCreatedAtColumn() throws ParseException {
+        checkSortingForDates("td[7]", "DESC");
+    }
+
+    public void checkAscSortingByCreatedAtColumn() throws ParseException {
+        checkSortingForDates("td[7]", "ASC");
     }
 
 }

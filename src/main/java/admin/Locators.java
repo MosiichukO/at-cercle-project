@@ -30,8 +30,10 @@ public class Locators extends TestData {
     public SelenideElement add_dry_cleaner_button = $(".btn.btn-primary");
     public SelenideElement name_field_create = $$("#dry_cleaner_name").get(0);
     public SelenideElement address_field_create = $$("#dry_cleaner_address").get(0);
+    public SelenideElement contact_details_field_create = $$("#dry_cleaner_contact_details").get(0);
     public SelenideElement name_field_edit = $(By.name("dry_cleaner[name]"));
     public SelenideElement address_field_edit = $(By.name("dry_cleaner[address]"));
+    public SelenideElement contact_details_field_edit = $(By.name("dry_cleaner[contact_details]"));
     public SelenideElement create_button = $("#submitDryCleaner");
     public SelenideElement update_button = $("#submitEditDryCleaner");
     public SelenideElement dry_cleaner_orders_tab = $(By.xpath("/html/body/div[1]/div/nav/ul/li[7]/ul/li[2]/a"));
@@ -76,6 +78,8 @@ public class Locators extends TestData {
             $("#dry_cleaner_status").$$(By.tagName("OPTION"));
     public ElementsCollection status_dropdown_edit = $("#formDryCleaner.edit_dry_cleaner")
             .$("#dry_cleaner_status").$$(By.tagName("OPTION"));
+    public ElementsCollection user_dropdown_edit = $("#formDryCleaner.edit_dry_cleaner")
+            .$("#dry_cleaner_spree_user_id").$$(By.tagName("OPTION"));
     public ElementsCollection dry_cleaners_info_lines = dry_cleaners_table.$$(By.tagName("TR"));
 
     // Users page locators
@@ -122,5 +126,5 @@ public class Locators extends TestData {
     public SelenideElement user_dry_cleaner_checkbox = $("#user_spree_role_dry_cleaner");
 
     // Specials page locators
-    public SelenideElement specials_tab = $("fa.fa-object-group.icon_link.with-tip");
+    public SelenideElement group_of_items_tab = $("body > div.admin-nav.fits > div > nav > ul > li.tab-with-icon.selected > ul > li.selected > a");
 }

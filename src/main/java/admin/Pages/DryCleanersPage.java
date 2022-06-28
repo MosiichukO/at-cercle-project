@@ -107,6 +107,10 @@ public class DryCleanersPage extends AllPages {
         address_field_create.setValue(DRY_CLEANER_ADDRESS);
     }
 
+    public void setNonEmptyContactDetailsForCreate() {
+        contact_details_field_create.setValue(DRY_CLEANER_CONTACT_DETAILS);
+    }
+
     public void setExistingDryCleanerNameToNameField() {
         dry_cleaners_name_search_field.setValue(DRY_CLEANER_NAME_UPDATED);
     }
@@ -117,10 +121,6 @@ public class DryCleanersPage extends AllPages {
 
     public void setDayBeforeTodayToCreatedFromDateField() {
         dry_cleaners_created_at_from_field.setValue(YESTERDAY_DATE);
-    }
-
-    public void setDayTodayToCreatedToDateField() {
-        dry_cleaners_created_at_to_field.setValue(TODAY_DATE);
     }
 
     public void setDayTomorrowToCreatedToDateField() {
@@ -154,6 +154,11 @@ public class DryCleanersPage extends AllPages {
     public void checkAddDryCleanerModalOpened() {
         create_button.shouldBe(Condition.visible);
     }
+
+    public void checkAddDryCleanerButtonIsNotVisible () {
+        create_button.shouldNotBe(Condition.visible);
+    }
+
 
     public void checkStatusDropDownOptionsCreate() {
         status_dropdown_create.shouldHave(size(2));
@@ -262,7 +267,7 @@ public class DryCleanersPage extends AllPages {
 
     public void checkDryCleanerCreatedAtToDate() {
         for (com.codeborne.selenide.SelenideElement selenideElement : dry_cleaners_info_lines) {
-            selenideElement.find(By.xpath("td[7]")).shouldNotHave(Condition.exactText(TODAY_DATE));
+            selenideElement.find(By.xpath("td[7]")).shouldNotHave(Condition.exactText(TOMORROW_DATE));
         }
     }
 
@@ -355,6 +360,26 @@ public class DryCleanersPage extends AllPages {
 
     public void checkAscSortingByCreatedAtColumn() throws ParseException {
         checkSortingForDates("td[7]", "ASC");
+    }
+
+    public void checkFieldNameHasActualName() {
+        name_field_edit.shouldHave(Condition.exactValue(DRY_CLEANER_NAME));
+    }
+
+    public void checkFieldAddressHasActualAddress() {
+        address_field_edit.shouldHave(Condition.exactValue(DRY_CLEANER_ADDRESS));
+    }
+
+    public void checkFieldContactDetailsHasActualContactDetails() {
+        contact_details_field_edit.shouldHave(Condition.exactValue(DRY_CLEANER_CONTACT_DETAILS));
+    }
+
+    public void checkStatusDropdownHasActualStatus () {
+        status_dropdown_edit.find(Condition.selected).shouldHave(Condition.exactText("Active"));
+    }
+
+    public void checkUserDropdownHasActualStatus () {
+        user_dropdown_edit.find(Condition.selected).shouldHave(Condition.exactText("None"));
     }
 
 }

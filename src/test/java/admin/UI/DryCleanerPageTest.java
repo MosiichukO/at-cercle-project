@@ -1,7 +1,6 @@
 package admin.UI;
 
 import admin.Pages.DryCleanersPage;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 
@@ -72,7 +71,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @Test
         @Order(6)
         @Tag("C3461")
-        @DisplayName("Name can't be blank error if both fields are empty [Add Dry Cleaner modal]")
+        @DisplayName("Name can't be blank error if Address and Name fields are empty [Add Dry Cleaner modal]")
         public void nameAndAddressCanNotBeBlankErrorCreateModal() {
             clickAddDryCleanerButton();
             clickCreateButton();
@@ -82,7 +81,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @Test
         @Order(7)
         @Tag("C3462")
-        @DisplayName("Dry Cleaner is created if both fields are not empty [Add Dry Cleaner modal]")
+        @DisplayName("Dry Cleaner is created if Address and Name fields are not empty [Add Dry Cleaner modal]")
         public void dryCleanerCreation() {
             clickAddDryCleanerButton();
             setNonEmptyNameForCreate();
@@ -243,7 +242,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @Tag("C12492")
         @DisplayName("It is possible to filter Dry cleaners by Created at To date")
         public void checkFilterByCreatedToDate () {
-            setDayTodayToCreatedToDateField();
+            setDayTomorrowToCreatedToDateField();
             clickSearchButton();
             checkDryCleanerCreatedAtToDate();
         }
@@ -413,6 +412,74 @@ public class DryCleanerPageTest extends DryCleanersPage {
             checkDryCleanerDeleteSuccessMessage();
         }
 
+        @Test
+        @Order(39)
+        @Tag("C12497")
+        @DisplayName("It is possible to create Dry cleaner if Name, Address and Contact Details fields are not empty")
+        public void dryCleanerCreationWithContactDetails() {
+            clickAddDryCleanerButton();
+            setNonEmptyNameForCreate();
+            setNonEmptyAddressForCreate();
+            setNonEmptyContactDetailsForCreate();
+            clickCreateButton();
+            checkDryCleanerExist();
+        }
+
+        @Test
+        @Order(40)
+        @Tag("C12500")
+        @DisplayName("Name field is prefilled with Dry Cleaner's name when Edit Dry Cleaner modal is opened")
+        public void nameFieldIsPrefilledInEditModal () {
+            clickEditButton();
+            checkFieldNameHasActualName();
+        }
+
+        @Test
+        @Order(41)
+        @Tag("C12501")
+        @DisplayName("Address field is prefilled with Dry Cleaner's address when Edit Dry Cleaner modal is opened")
+        public void addressFieldIsPrefilledInEditModal () {
+            clickEditButton();
+            checkFieldAddressHasActualAddress();
+        }
+
+        @Test
+        @Order(42)
+        @Tag("C12502")
+        @DisplayName("Contact Details field is prefilled with Dry Cleaner's contact details when Edit Dry Cleaner modal is opened")
+        public void contactDetailsFieldIsPrefilledInEditModal () {
+            clickEditButton();
+            checkFieldContactDetailsHasActualContactDetails();
+        }
+
+        @Test
+        @Order(43)
+        @Tag("C12504")
+        @DisplayName("Status dropdown is prefilled with Dry Cleaner's status when Edit Dry Cleaner modal is opened")
+        public void statusDropdownIsPrefilledInEditModal () {
+            clickEditButton();
+            checkStatusDropdownHasActualStatus();
+        }
+
+        @Test
+        @Order(44)
+        @Tag("C12503")
+        @DisplayName("User dropdown is prefilled with Dry Cleaner's user when Edit Dry Cleaner modal is opened")
+        public void userDropdownIsPrefilledInEditModal () {
+            clickEditButton();
+            checkUserDropdownHasActualStatus();
+        }
+
+        @AfterAll
+        public void deleteCreatedDryCleaners() {
+            openAdminLoginPage();
+            authorizationAdmin();
+            openDryCleanerPage();
+            clickDeleteButtonForNotUpdatedDc();
+            confirmDryCleanerDelete();
+            checkDryCleanerDeleteSuccessMessage();
+        }
+
     }
 
     @Nested
@@ -443,10 +510,22 @@ public class DryCleanerPageTest extends DryCleanersPage {
             authorizationDryCleanerUser();
             checkDryCleanersPageIsOpened();
         }
+
+        @Test
+        @Order(2)
+        @Tag("C12499")
+        @DisplayName("There isn't Add Dry Cleaner button for Dry cleaner user")
+        public void noAddDryCleanerButtonForDryCleanerUser () {
+            openAdminLoginPage();
+            authorizationDryCleanerUser();
+            checkAddDryCleanerButtonIsNotVisible();
+        }
     }
 
     @AfterEach
     public void closeDriver() {
         WebDriverRunner.driver().close();
     }
+
+
 }

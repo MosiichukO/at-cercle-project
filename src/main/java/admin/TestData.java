@@ -3,8 +3,6 @@ package admin;
 import org.apache.commons.lang.RandomStringUtils;
 
 import java.time.LocalDate;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 
 public class TestData extends Credentials {
@@ -53,11 +51,18 @@ public class TestData extends Credentials {
     public final String EDIT_USER_PAGE_TITLE = "%s - Users";
     public final String AUTHORIZATION_PAGE_TITLE = "User Sessions";
     public final String DRY_CLEANER_ORDERS_PAGE_TITLE = "Dry Cleaner Orders";
+    public final String CONCIERGE_REQUESTS_PAGE_TITLE = "Concierge request";
 
     // Dropdowns' options
 
-    public final String STATUS_DROPDOWN_FIRST_OPTION = "Active";
-    public final String STATUS_DROPDOWN_SECOND_OPTION = "Non active";
+    public final String STATUS_DROPDOWN_FIRST_OPTION_DC = "Active";
+    public final String STATUS_DROPDOWN_SECOND_OPTION_DC = "Non active";
+    public final String USER_DROPDOWN_NONE_OPTION_DC = "None";
+    public final String STATUS_DROPDOWN_FIRST_OPTION_CR = "Pending";
+    public final String STATUS_DROPDOWN_SECOND_OPTION_CR = "In progress";
+    public final String STATUS_DROPDOWN_THIRD_OPTION_CR = "Completed";
+    public final String STATUS_DROPDOWN_FOURTH_OPTION_CR = "Canceled";
+
 
     // Validation
 
@@ -93,4 +98,8 @@ public class TestData extends Credentials {
     public final String TODAY_DATE = String.valueOf(LocalDate.now());
     public final String YESTERDAY_DATE = String.valueOf(LocalDate.now().minusDays(1));
     public final String TOMORROW_DATE = String.valueOf(LocalDate.now().plusDays(1));
+
+    // Other
+
+    public final String NON_REGISTERED_REQUEST_USER = "Non registered user";
 }

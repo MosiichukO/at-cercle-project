@@ -75,10 +75,6 @@ public class DryCleanersPage extends AllPages {
         dry_cleaners_created_at_column_name.click();
     }
 
-    public void clickStatusDropdown() {
-        dry_cleaners_status_dropdown.click();
-    }
-
     public void clickSearchButton() {
         dry_cleaners_search_button.click();
     }
@@ -119,14 +115,6 @@ public class DryCleanersPage extends AllPages {
         dry_cleaners_address_search_field.setValue(DRY_CLEANER_ADDRESS_UPDATED);
     }
 
-    public void setDayBeforeTodayToCreatedFromDateField() {
-        dry_cleaners_created_at_from_field.setValue(YESTERDAY_DATE);
-    }
-
-    public void setDayTomorrowToCreatedToDateField() {
-        dry_cleaners_created_at_to_field.setValue(TOMORROW_DATE);
-    }
-
     public void clearNameField() {
         name_field_edit.clear();
     }
@@ -162,12 +150,12 @@ public class DryCleanersPage extends AllPages {
 
     public void checkStatusDropDownOptionsCreate() {
         status_dropdown_create.shouldHave(size(2));
-        status_dropdown_create.shouldHave(exactTexts(STATUS_DROPDOWN_FIRST_OPTION, STATUS_DROPDOWN_SECOND_OPTION));
+        status_dropdown_create.shouldHave(exactTexts(STATUS_DROPDOWN_FIRST_OPTION_DC, STATUS_DROPDOWN_SECOND_OPTION_DC));
     }
 
     public void checkStatusDropDownOptionsEdit() {
         status_dropdown_edit.shouldHave(size(2));
-        status_dropdown_edit.shouldHave(exactTexts(STATUS_DROPDOWN_FIRST_OPTION, STATUS_DROPDOWN_SECOND_OPTION));
+        status_dropdown_edit.shouldHave(exactTexts(STATUS_DROPDOWN_FIRST_OPTION_DC, STATUS_DROPDOWN_SECOND_OPTION_DC));
     }
 
     public void checkDryCleanerExist() {
@@ -236,11 +224,11 @@ public class DryCleanersPage extends AllPages {
     }
 
     public void checkActiveStatusDryCleanersOnlyInList() {
-        checkDryCleanerStatusInList("Active");
+        checkDryCleanerStatusInList(STATUS_DROPDOWN_FIRST_OPTION_DC);
     }
 
     public void checkNonActiveStatusDryCleanersOnlyInList() {
-        checkDryCleanerStatusInList("Non active");
+        checkDryCleanerStatusInList(STATUS_DROPDOWN_SECOND_OPTION_DC);
     }
 
     public void checkDryCleanerNameInList() {
@@ -271,95 +259,60 @@ public class DryCleanersPage extends AllPages {
         }
     }
 
-    public void checkDescSortingByIdColumn() {
-        for (int i = 1; i < dry_cleaners_info_lines.size(); i++) {
-            int id1 = Integer.parseInt(dry_cleaners_info_lines.get(i - 1).find(By.xpath("td[1]")).getText());
-            int id2 = Integer.parseInt(dry_cleaners_info_lines.get(i).find(By.xpath("td[1]")).getText());
-            Assert.isTrue(id2 < id1, "Incorrect sorting");
-        }
+    public void checkDryCleanersDescSortingByIdColumn() {
+        checkAscSortingByIdColumn(dry_cleaners_info_lines, "td[1]", "DESC");
     }
 
-    public void checkAscSortingByIdColumn() {
-        for (int i = 1; i < dry_cleaners_info_lines.size(); i++) {
-            int id1 = Integer.parseInt(dry_cleaners_info_lines.get(i - 1).find(By.xpath("td[1]")).getText());
-            int id2 = Integer.parseInt(dry_cleaners_info_lines.get(i).find(By.xpath("td[1]")).getText());
-            Assert.isTrue(id2 > id1, "Incorrect sorting");
-        }
+    public void checkDryCleanersAscSortingByIdColumn() {
+        checkAscSortingByIdColumn(dry_cleaners_info_lines, "td[1]", "ASC");
     }
 
-    public void checkSortingForStrings (String column_td, String sort_type) {
-        for (int i = 1; i < dry_cleaners_info_lines.size(); i++) {
-            String name1 = dry_cleaners_info_lines.get(i - 1).find(By.xpath(column_td)).getText();
-            String name2 = dry_cleaners_info_lines.get(i).find(By.xpath(column_td)).getText();
-            int compare = name1.compareToIgnoreCase(name2);
-            if (sort_type.equals("DESC")) {
-                Assert.isTrue(compare >= 0, "Incorrect sorting");
-            } else if (sort_type.equals("ASC")) {
-                Assert.isTrue(compare <= 0, "Incorrect sorting");
-            }
-        }
+    public void checkDryCleanersDescSortingByNameColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[2]", "DESC");
     }
 
-    public void checkDescSortingByNameColumn() {
-        checkSortingForStrings("td[2]", "DESC");
+    public void checkDryCleanersAscSortingByNameColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[2]", "ASC");
     }
 
-    public void checkAscSortingByNameColumn() {
-        checkSortingForStrings("td[2]", "ASC");
+    public void checkDryCleanersDescSortingByAddressColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[3]", "DESC");
     }
 
-    public void checkDescSortingByAddressColumn() {
-        checkSortingForStrings("td[3]", "DESC");
+    public void checkDryCleanersAscSortingByAddressColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[3]", "ASC");
     }
 
-    public void checkAscSortingByAddressColumn() {
-        checkSortingForStrings("td[3]", "ASC");
+    public void checkDryCleanersDescSortingByContactDetailsColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[4]", "DESC");
     }
 
-    public void checkDescSortingByContactDetailsColumn() {
-        checkSortingForStrings("td[4]", "DESC");
+    public void checkDryCleanersAscSortingByContactDetailsColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[4]", "ASC");
     }
 
-    public void checkAscSortingByContactDetailsColumn() {
-        checkSortingForStrings("td[4]", "ASC");
+    public void checkDryCleanersDescSortingByUserColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[5]", "DESC");
     }
 
-    public void checkDescSortingByUserColumn() {
-        checkSortingForStrings("td[5]", "DESC");
+    public void checkDryCleanersAscSortingByUserColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[5]", "ASC");
     }
 
-    public void checkAscSortingByUserColumn() {
-        checkSortingForStrings("td[5]", "ASC");
+    public void checkDryCleanersDescSortingByStatusColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[6]", "DESC");
     }
 
-    public void checkDescSortingByStatusColumn() {
-        checkSortingForStrings("td[6]", "DESC");
+    public void checkDryCleanersAscSortingByStatusColumn() {
+        checkSortingByColumn(dry_cleaners_info_lines,"td[6]", "ASC");
     }
 
-    public void checkAscSortingByStatusColumn() {
-        checkSortingForStrings("td[6]", "ASC");
+    public void checkDryCleanersDescSortingByCreatedAtColumn() throws ParseException {
+        checkSortingForDates(dry_cleaners_info_lines, "td[7]", "DESC");
     }
 
-    public void checkSortingForDates (String column_td, String sort_type) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        for (int i = 1; i < dry_cleaners_info_lines.size(); i++) {
-            Date date1 = sdf.parse(dry_cleaners_info_lines.get(i - 1).find(By.xpath(column_td)).getText());
-            Date date2 = sdf.parse(dry_cleaners_info_lines.get(i).find(By.xpath(column_td)).getText());
-            int compare = date1.compareTo(date2);
-            if (sort_type.equals("DESC")) {
-                Assert.isTrue(compare >= 0, "Incorrect sorting");
-            } else if (sort_type.equals("ASC")) {
-                Assert.isTrue(compare <= 0, "Incorrect sorting");
-            }
-        }
-    }
-
-    public void checkDescSortingByCreatedAtColumn() throws ParseException {
-        checkSortingForDates("td[7]", "DESC");
-    }
-
-    public void checkAscSortingByCreatedAtColumn() throws ParseException {
-        checkSortingForDates("td[7]", "ASC");
+    public void checkDryCleanersAscSortingByCreatedAtColumn() throws ParseException {
+        checkSortingForDates(dry_cleaners_info_lines, "td[7]", "ASC");
     }
 
     public void checkFieldNameHasActualName() {
@@ -375,11 +328,11 @@ public class DryCleanersPage extends AllPages {
     }
 
     public void checkStatusDropdownHasActualStatus () {
-        status_dropdown_edit.find(Condition.selected).shouldHave(Condition.exactText("Active"));
+        status_dropdown_edit.find(Condition.selected).shouldHave(Condition.exactText(STATUS_DROPDOWN_FIRST_OPTION_DC));
     }
 
     public void checkUserDropdownHasActualStatus () {
-        user_dropdown_edit.find(Condition.selected).shouldHave(Condition.exactText("None"));
+        user_dropdown_edit.find(Condition.selected).shouldHave(Condition.exactText(USER_DROPDOWN_NONE_OPTION_DC));
     }
 
 }

@@ -264,7 +264,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @DisplayName("By first click on Id column's name, Dry Cleaners are sorted by id in DESC order")
         public void checkDescSortingById () {
             clickIdColumn();
-            checkDescSortingByIdColumn();
+            checkDryCleanersDescSortingByIdColumn();
 
         }
 
@@ -275,7 +275,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         public void checkAscSortingById () {
             clickIdColumn();
             clickIdColumn();
-            checkAscSortingByIdColumn();
+            checkDryCleanersAscSortingByIdColumn();
         }
 
         @Test
@@ -284,7 +284,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @DisplayName("By first click on Name column's name, Dry Cleaners are sorted by name in DESC order")
         public void checkDescSortingByName () {
             clickNameColumn();
-            checkDescSortingByNameColumn();
+            checkDryCleanersDescSortingByNameColumn();
         }
 
         @Test
@@ -294,7 +294,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         public void checkAscSortingByName () {
             clickNameColumn();
             clickNameColumn();
-            checkAscSortingByNameColumn();
+            checkDryCleanersAscSortingByNameColumn();
         }
 
         @Test
@@ -303,7 +303,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @DisplayName("By first click on Address column's name, Dry Cleaners are sorted by address in DESC order")
         public void checkDescSortingByAddress () {
             clickAddressColumn();
-            checkDescSortingByAddressColumn();
+            checkDryCleanersDescSortingByAddressColumn();
         }
 
         @Test
@@ -313,7 +313,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         public void checkAscSortingByAddress () {
             clickAddressColumn();
             clickAddressColumn();
-            checkAscSortingByAddressColumn();
+            checkDryCleanersAscSortingByAddressColumn();
         }
 
         @Test
@@ -322,7 +322,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @DisplayName("By first click on Contact Details column's name, Dry Cleaners are sorted by contact details in DESC order")
         public void checkDescSortingByContactDetails () {
             clickContactDetailsColumn();
-            checkDescSortingByContactDetailsColumn();
+            checkDryCleanersDescSortingByContactDetailsColumn();
         }
 
         @Test
@@ -332,7 +332,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         public void checkAscSortingByContactDetails () {
             clickContactDetailsColumn();
             clickContactDetailsColumn();
-            checkAscSortingByContactDetailsColumn();
+            checkDryCleanersAscSortingByContactDetailsColumn();
         }
 
         @Test
@@ -341,7 +341,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @DisplayName("By first click on User column's name, Dry Cleaners are sorted by user in DESC order")
         public void checkDescSortingByUser () {
             clickUserColumn();
-            checkDescSortingByUserColumn();
+            checkDryCleanersDescSortingByUserColumn();
         }
 
         @Test
@@ -351,7 +351,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         public void checkAscSortingByUser () {
             clickUserColumn();
             clickUserColumn();
-            checkAscSortingByUserColumn();
+            checkDryCleanersAscSortingByUserColumn();
         }
 
         @Test
@@ -360,7 +360,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @DisplayName("By first click on Status column's name, Dry Cleaners are sorted by status in DESC order")
         public void checkDescSortingByStatus () {
             clickStatusColumn();
-            checkDescSortingByStatusColumn();
+            checkDryCleanersDescSortingByStatusColumn();
         }
 
         @Test
@@ -370,7 +370,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         public void checkAscSortingByStatus () {
             clickStatusColumn();
             clickStatusColumn();
-            checkAscSortingByStatusColumn();
+            checkDryCleanersAscSortingByStatusColumn();
         }
 
         @Test
@@ -379,7 +379,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         @DisplayName("By first click on Created at column's name, Dry Cleaners are sorted by created at date in DESC order")
         public void checkDescSortingByCreatedAt () throws ParseException {
             clickCreatedAtColumn();
-            checkDescSortingByCreatedAtColumn();
+            checkDryCleanersDescSortingByCreatedAtColumn();
         }
 
         @Test
@@ -389,7 +389,7 @@ public class DryCleanerPageTest extends DryCleanersPage {
         public void checkAscSortingByCreatedAt () throws ParseException {
             clickCreatedAtColumn();
             clickCreatedAtColumn();
-            checkAscSortingByCreatedAtColumn();
+            checkDryCleanersAscSortingByCreatedAtColumn();
         }
 
         @Test

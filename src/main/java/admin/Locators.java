@@ -18,6 +18,11 @@ public class Locators extends TestData {
     public SelenideElement success_message = $(".flash.success");
     public SelenideElement logout_button = $(".fa.fa-sign-out");
     public SelenideElement page_title = $("title");
+    public SelenideElement filter_status_dropdown = $("#q_status_eq");
+    public SelenideElement filter_created_at_from_field = $("#q_created_at_gt");
+    public SelenideElement filter_created_at_to_field = $("#q_created_at_lt");
+
+
 
     //Authorization page locators
     public SelenideElement email_field = $("#spree_user_email");
@@ -37,15 +42,12 @@ public class Locators extends TestData {
     public SelenideElement create_button = $("#submitDryCleaner");
     public SelenideElement update_button = $("#submitEditDryCleaner");
     public SelenideElement dry_cleaner_orders_tab = $(By.xpath("/html/body/div[1]/div/nav/ul/li[7]/ul/li[2]/a"));
-    public SelenideElement dry_cleaners_status_dropdown = $("#q_status_eq");
     public SelenideElement dry_cleaners_active_status_option = $("#q_status_eq > option:nth-child(2)");
     public SelenideElement dry_cleaners_non_active_status_option = $("#q_status_eq > option:nth-child(3)");
     public SelenideElement dry_cleaners_search_button = $("#dry_cleaner_search > div.actions.filter-actions > button");
     public SelenideElement dry_cleaners_table = $("#listing_dry_cleaners > tbody");
     public SelenideElement dry_cleaners_name_search_field = $("#q_name_cont");
     public SelenideElement dry_cleaners_address_search_field = $("#q_address_cont");
-    public SelenideElement dry_cleaners_created_at_from_field = $("#q_created_at_gt");
-    public SelenideElement dry_cleaners_created_at_to_field = $("#q_created_at_lt");
     public SelenideElement dry_cleaners_id_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(1) > a");
     public SelenideElement dry_cleaners_name_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(2) > a");
     public SelenideElement dry_cleaners_address_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(3) > a");
@@ -53,11 +55,6 @@ public class Locators extends TestData {
     public SelenideElement dry_cleaners_user_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(5) > a");
     public SelenideElement dry_cleaners_status_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(6) > a");
     public SelenideElement dry_cleaners_created_at_column_name = $("#listing_dry_cleaners > thead > tr > th:nth-child(7) > a");
-
-
-
-
-
 
     public SelenideElement getDcEditButton(String dc_name) {
         return $$(byAttribute("href", Objects.requireNonNull($(byText(dc_name))
@@ -125,6 +122,29 @@ public class Locators extends TestData {
     public SelenideElement user_support_checkbox = $("#user_spree_role_support");
     public SelenideElement user_dry_cleaner_checkbox = $("#user_spree_role_dry_cleaner");
 
-    // Specials page locators
+    // Group of items page locators
     public SelenideElement group_of_items_tab = $("body > div.admin-nav.fits > div > nav > ul > li.tab-with-icon.selected > ul > li.selected > a");
+
+    // Concierge Requests page locators
+    public SelenideElement requests_tab = $(".fa.fa-email.icon_link.with-tip");
+    public SelenideElement concierge_requests_search_button = $("#concierge_request_search > div.actions.filter-actions > button");
+    public SelenideElement concierge_requests_table = $("#listing_concierge_requests > tbody");
+    public SelenideElement concierge_requests_pending_status_option = $("#q_status_eq > option:nth-child(2)");
+    public SelenideElement concierge_requests_in_progress_status_option = $("#q_status_eq > option:nth-child(3)");
+    public SelenideElement concierge_requests_completed_status_option = $("#q_status_eq > option:nth-child(4)");
+    public SelenideElement concierge_requests_canceled_status_option = $("#q_status_eq > option:nth-child(5)");
+    public SelenideElement concierge_requests_id_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(1) > a");
+    public SelenideElement concierge_requests_request_user_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(2) > a");
+    public SelenideElement concierge_requests_full_name_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(3) > a");
+    public SelenideElement concierge_requests_phone_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(4) > a");
+    public SelenideElement concierge_requests_email_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(5) > a");
+    public SelenideElement concierge_requests_pick_up_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(6) > a");
+    public SelenideElement concierge_requests_status_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(7) > a");
+    public SelenideElement concierge_requests_created_at_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(8) > a");
+
+    public ElementsCollection concierge_requests_info_lines = concierge_requests_table.$$(By.tagName("TR"));
+
+
+
+
 }

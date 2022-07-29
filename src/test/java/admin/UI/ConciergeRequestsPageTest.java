@@ -12,6 +12,7 @@ public class ConciergeRequestsPageTest extends ConciergeRequestsPage {
     @TestInstance(TestInstance.Lifecycle.PER_CLASS)
     @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
     class AdminRoleTest {
+
         @BeforeEach
         public void authorizeAndOpenConciergeRequestsPage() {
             openAdminLoginPage();
@@ -217,6 +218,14 @@ public class ConciergeRequestsPageTest extends ConciergeRequestsPage {
             clickPickUpDatetimeColumn();
             clickPickUpDatetimeColumn();
             checkConciergeRequestsAscSortingByPickUpDatetimeColumn();
+        }
+
+        @Test
+        @Order(21)
+        @Tag("C12902")
+        @DisplayName("By clicking Info button, Concierge Request Info modal is opened")
+        public void byClickingInfoButtonConciergeRequestInfoModalOpens () {
+
         }
 
     }

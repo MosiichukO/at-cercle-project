@@ -1,18 +1,18 @@
-package admin;
+package core;
 
 import org.apache.commons.lang.RandomStringUtils;
 
 import java.time.LocalDate;
 
 
-public class TestData extends Credentials {
+public class TestData extends Credentials{
 
     String random_string_30 = RandomStringUtils.randomAlphanumeric( 1 + (int) (Math.random() * 30));
     String [] spec_symbols = {"!", "@", "#", "$", "%", "^", "&", "'",
             "(", ")", "_", "+", "-", "=", "[", "]", "{", "}", ";", ":", "|", "<", ">", "?"};
     public String random_spec_symbol = spec_symbols[1 + (int) (Math.random() * (spec_symbols.length - 1))];
 
-    // Messages (Error / Success)
+    // Admin panel messages (Error / Success)
 
     public final String NON_REGISTERED_CREDENTIALS_ERROR = "Invalid email or password.";
     public final String AUTHORIZATION_SUCCESS_MESSAGE = "Logged in successfully";
@@ -43,7 +43,7 @@ public class TestData extends Credentials {
     public final String ROLE_IS_NOT_CHOSEN_ERROR = "Please select role for the user.";
     public final String USER_UPDATE_SUCCESS_MESSAGE = "Account updated";
 
-    // Page's titles
+    // Admin panel page's titles
 
     public final String DRY_CLEANERS_PAGE_TITLE = "Dry Cleaners";
     public final String NEW_USER_PAGE_TITLE = "New User - Users";
@@ -53,7 +53,7 @@ public class TestData extends Credentials {
     public final String DRY_CLEANER_ORDERS_PAGE_TITLE = "Dry Cleaner Orders";
     public final String CONCIERGE_REQUESTS_PAGE_TITLE = "Concierge request";
 
-    // Dropdowns' options
+    // Admin panel dropdowns' options
 
     public final String STATUS_DROPDOWN_FIRST_OPTION_DC = "Active";
     public final String STATUS_DROPDOWN_SECOND_OPTION_DC = "Non active";
@@ -67,6 +67,8 @@ public class TestData extends Credentials {
     // Validation
 
     public final int PASSWORD_MIN_LENGTH = 6;
+    public final int FULL_NAME_MIN_LENGTH = 3;
+    public final int FULL_NAME_MAX_LENGTH = 30;
     public final String RANDOM_VALID_EMAIL = random_string_30 + "@" + random_string_30 + "." + random_string_30;
     public final String RANDOM_EMAIL_WITHOUT_AMPERSAND = RandomStringUtils.randomAlphanumeric(1 + (int) (Math.random() * 30));
     public final String RANDOM_EMAIL_WITHOUT_PART_BEFORE_AMPERSAND = "@" + random_string_30;
@@ -76,6 +78,9 @@ public class TestData extends Credentials {
     public final String RANDOM_PASSWORD_VALID_LENGTH = RandomStringUtils.randomAscii(PASSWORD_MIN_LENGTH + (int) (Math.random() * 30));
     public final String RANDOM_PASSWORD_INVALID_LENGTH = RandomStringUtils.randomAscii(1 + (int) (Math.random() * (PASSWORD_MIN_LENGTH - 1)));
     public final String ERROR_FIELD_BORDER_COLOR = "rgb(206, 69, 42)";
+    public final String RANDOM_FULL_NAME_VALID_LENGTH = RandomStringUtils.randomAscii(FULL_NAME_MIN_LENGTH + (int) (Math.random() * (FULL_NAME_MAX_LENGTH - 1)));
+    public final String RANDOM_FULL_NAME_INVALID_LENGTH = RandomStringUtils.randomAscii(1 + (int) (Math.random() * (FULL_NAME_MIN_LENGTH - 1)));
+
 
     // Test user's data
 
@@ -92,6 +97,7 @@ public class TestData extends Credentials {
     public final String DRY_CLEANER_NAME_UPDATED = "1-qa_auto_name_updated";
     public final String MEMBER_SINCE_START_DATE = "2022-02-17";
     public final String PART_OF_EMAIL_FOR_FILTERING = "@support";
+    public String TEMP_EMAIL = "";
 
     // Dates
 
@@ -99,7 +105,21 @@ public class TestData extends Credentials {
     public final String YESTERDAY_DATE = String.valueOf(LocalDate.now().minusDays(1));
     public final String TOMORROW_DATE = String.valueOf(LocalDate.now().plusDays(1));
 
-    // Other
 
-    public final String NON_REGISTERED_REQUEST_USER = "Non registered user";
+    // Client validation errors
+
+    public final String EMAIL_REQUIRED_ERROR = "Email is required";
+    public final String EMAIL_INVALID_ERROR = "Enter a valid email address";
+    public final String NON_CONFIRMED_EMAIL_ERROR = "User account is not confirmed";
+    public final String EMAIL_TAKEN_ERROR = "Email has already been taken.";
+    public final String PASSWORD_REQUIRED_ERROR = "Password is required";
+    public final String PASSWORD_SIX_SYMBOLS_MINIMUM_ERROR = "6 symbols minimum";
+    public final String WRONG_CREDENTIALS_ERROR = "Wrong credentials";
+    public final String FULL_NAME_REQUIRED_ERROR = "Full name is required";
+    public final String FULL_NAME_THREE_SYMBOLS_MINIMUM_ERROR = "3 symbols minimum";
+    public final String CONFIRM_PASSWORD_REQUIRED_ERROR = "Password confirmation is required";
+    public final String CONFIRM_PASSWORD_MATCH_ERROR = "Should match password";
+
+
+
 }

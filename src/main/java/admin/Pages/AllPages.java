@@ -1,6 +1,6 @@
 package admin.Pages;
 
-import admin.Locators;
+import admin.AdminPanelLocators;
 import com.codeborne.selenide.ElementsCollection;
 import net.jodah.failsafe.internal.util.Assert;
 import org.openqa.selenium.By;
@@ -12,7 +12,7 @@ import java.util.Date;
 import static com.codeborne.selenide.Selenide.open;
 import static core.Config.ADMIN_AUTH_URL;
 
-public class AllPages extends Locators {
+public class AllPages extends AdminPanelLocators {
 
     public void openAdminLoginPage() {
         open(ADMIN_AUTH_URL);

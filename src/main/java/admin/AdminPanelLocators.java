@@ -2,6 +2,7 @@ package admin;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import core.TestData;
 import org.openqa.selenium.By;
 
 import java.util.Objects;
@@ -11,7 +12,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class Locators extends TestData {
+public class AdminPanelLocators extends TestData {
 
     // All pages locators
     public SelenideElement error_message = $(".flash.error");
@@ -141,6 +142,7 @@ public class Locators extends TestData {
     public SelenideElement concierge_requests_pick_up_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(6) > a");
     public SelenideElement concierge_requests_status_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(7) > a");
     public SelenideElement concierge_requests_created_at_column_name = $("#listing_concierge_requests > thead > tr > th:nth-child(8) > a");
+
 
     public ElementsCollection concierge_requests_info_lines = concierge_requests_table.$$(By.tagName("TR"));
 

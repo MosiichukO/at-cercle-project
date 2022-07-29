@@ -254,7 +254,7 @@ public class SignUpTest extends AuthorizationPages {
         @Tag("C14641")
         @DisplayName("30 symbols maximum error appears under the Full name field if it is > 30 symbols")
         public void errorMessageIfFullNameMoreThanThirtySymbols () {
-            setInvalidMaxLengthFullName();
+            setInvalidMaxLengthFullName ();
             clickCreateAccountButton();
             checkFullNameThirtySymbolsMaximumError();
         }

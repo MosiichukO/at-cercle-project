@@ -3,7 +3,6 @@ package client.Pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.conditions.Visible;
 
 import java.time.Duration;
 
@@ -129,8 +128,12 @@ public class AuthorizationPages extends AllPages {
         full_name_field.setValue(RANDOM_FULL_NAME_VALID_LENGTH);
     }
 
-    public void setInvalidLengthFullName () {
-        full_name_field.setValue(RANDOM_FULL_NAME_INVALID_LENGTH);
+    public void setInvalidMinLengthFullName() {
+        full_name_field.setValue(RANDOM_FULL_NAME_INVALID_MIN_LENGTH);
+    }
+
+    public void setInvalidMaxLengthFullName() {
+        full_name_field.setValue(RANDOM_FULL_NAME_INVALID_MAX_LENGTH);
     }
 
     public void checkSignInModalIsOpened() {
@@ -184,6 +187,8 @@ public class AuthorizationPages extends AllPages {
     public void checkFullNameRequiredErrorSignUp() { checkFieldError(full_name_field_error, FULL_NAME_REQUIRED_ERROR);}
 
     public void checkFullNameThreeSymbolsMinimumError() { checkFieldError(full_name_field_error, FULL_NAME_THREE_SYMBOLS_MINIMUM_ERROR);}
+
+    public void checkFullNameThirtySymbolsMaximumError() { checkFieldError(full_name_field_error, FULL_NAME_THIRTY_SYMBOLS_MAXIMUM_ERROR);}
 
     public void checkPasswordRequiredErrorSignIn() { checkFieldError(password_field_error_sign_in, PASSWORD_REQUIRED_ERROR);}
 

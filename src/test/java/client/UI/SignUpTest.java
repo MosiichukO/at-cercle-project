@@ -1,7 +1,6 @@
 package client.UI;
 
 import client.Pages.AuthorizationPages;
-import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.*;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
@@ -244,14 +243,24 @@ public class SignUpTest extends AuthorizationPages {
         @Order(20)
         @Tag("C14640")
         @DisplayName("3 symbols minimum error appears under the Full name field if it is > 0 and  < 3 symbols")
-        public void errorMessageIfFullNameLessThenThreeSymbols () {
-            setInvalidLengthFullName();
+        public void errorMessageIfFullNameLessThanThreeSymbols () {
+            setInvalidMinLengthFullName();
             clickCreateAccountButton();
             checkFullNameThreeSymbolsMinimumError();
         }
 
         @Test
         @Order(21)
+        @Tag("C14641")
+        @DisplayName("30 symbols maximum error appears under the Full name field if it is > 30 symbols")
+        public void errorMessageIfFullNameMoreThanThirtySymbols () {
+            setInvalidMaxLengthFullName();
+            clickCreateAccountButton();
+            checkFullNameThirtySymbolsMaximumError();
+        }
+
+        @Test
+        @Order(22)
         @Tag("C14219, 14222, 14223, 14224")
         @DisplayName("Registration flow")
         public void registrationFlow () {

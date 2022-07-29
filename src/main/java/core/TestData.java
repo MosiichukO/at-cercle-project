@@ -79,7 +79,8 @@ public class TestData extends Credentials{
     public final String RANDOM_PASSWORD_INVALID_LENGTH = RandomStringUtils.randomAscii(1 + (int) (Math.random() * (PASSWORD_MIN_LENGTH - 1)));
     public final String ERROR_FIELD_BORDER_COLOR = "rgb(206, 69, 42)";
     public final String RANDOM_FULL_NAME_VALID_LENGTH = RandomStringUtils.randomAscii(FULL_NAME_MIN_LENGTH + (int) (Math.random() * (FULL_NAME_MAX_LENGTH - 1)));
-    public final String RANDOM_FULL_NAME_INVALID_LENGTH = RandomStringUtils.randomAscii(1 + (int) (Math.random() * (FULL_NAME_MIN_LENGTH - 1)));
+    public final String RANDOM_FULL_NAME_INVALID_MIN_LENGTH = RandomStringUtils.randomAscii( 1 + (int) (Math.random() * (FULL_NAME_MIN_LENGTH - 1)));
+    public final String RANDOM_FULL_NAME_INVALID_MAX_LENGTH = RandomStringUtils.randomAscii(FULL_NAME_MAX_LENGTH + (int) (Math.random() * 100));
 
 
     // Test user's data
@@ -117,6 +118,7 @@ public class TestData extends Credentials{
     public final String WRONG_CREDENTIALS_ERROR = "Wrong credentials";
     public final String FULL_NAME_REQUIRED_ERROR = "Full name is required";
     public final String FULL_NAME_THREE_SYMBOLS_MINIMUM_ERROR = "3 symbols minimum";
+    public final String FULL_NAME_THIRTY_SYMBOLS_MAXIMUM_ERROR = "30 symbols maximum";
     public final String CONFIRM_PASSWORD_REQUIRED_ERROR = "Password confirmation is required";
     public final String CONFIRM_PASSWORD_MATCH_ERROR = "Should match password";
 

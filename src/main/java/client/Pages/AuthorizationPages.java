@@ -95,6 +95,10 @@ public class AuthorizationPages extends AllPages {
         email_field.setValue(REGISTERED_USER_EMAIL);
     }
 
+    public void setRegisteredTempMail () {
+        email_field.setValue(TEMP_EMAIL);
+    }
+
     public void setNonConfirmedEmail() {
         email_field.setValue(NON_CONFIRMED_USER_EMAIL);
     }
@@ -194,7 +198,7 @@ public class AuthorizationPages extends AllPages {
 
     public void checkPasswordRequiredErrorSignUp() { checkFieldError(password_field_error_sign_up, PASSWORD_REQUIRED_ERROR);}
 
-    public void checkConfirmPasswordRequiredErrorSignUp() { checkFieldError(password_field_error_sign_up, CONFIRM_PASSWORD_REQUIRED_ERROR);}
+    public void checkConfirmPasswordRequiredErrorSignUp() { checkFieldError(confirm_password_field_error_sign_up, CONFIRM_PASSWORD_REQUIRED_ERROR);}
 
     public void checkPasswordSixSymbolsMinimumErrorSignIn() { checkFieldError(password_field_error_sign_in, PASSWORD_SIX_SYMBOLS_MINIMUM_ERROR);}
 

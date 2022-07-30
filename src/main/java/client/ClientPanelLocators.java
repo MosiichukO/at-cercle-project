@@ -25,7 +25,7 @@ public class ClientPanelLocators extends TestData {
     public SelenideElement full_name_field = $(By.id("username"));
     public SelenideElement show_button_password_field = $$("[data-testid=\"button-picture\"]").get(1);
     public SelenideElement show_button_confirm_password_field = $$("[data-testid=\"button-picture\"]").get(2);
-    public SelenideElement log_in_button_sign_in_modal = $("body > div:nth-child(12) > div > div > div:nth-child(2) > div > div.css-1ulg1vh.elm852s4 > form > div > div.css-1p64573.e7hpyms0 > button");
+    public SelenideElement log_in_button_sign_in_modal = $("[type=\"submit\"]");
     public SelenideElement create_account_button = $$("[data-testid=\"button\"]").get(1);
     public SelenideElement email_field_error = $(By.xpath("/html/body/div[2]/div/div/div[2]/div/div[2]/form/div/div[1]/p"));
     public SelenideElement password_field_error_sign_in = $( By.xpath("/html/body/div[2]/div/div/div[2]/div/div[2]/form/div/div[2]/p"));
@@ -33,6 +33,14 @@ public class ClientPanelLocators extends TestData {
     public SelenideElement password_field_error_sign_up = $( By.xpath("/html/body/div[2]/div/div/div[2]/div/div[2]/form/div/div[3]/p"));
     public SelenideElement confirm_password_field_error_sign_up = $( By.xpath("/html/body/div[2]/div/div/div[2]/div/div[2]/form/div/div[4]/p"));
     public SelenideElement confirm_email_page = $("[data-testid=\"congratulations\"]");
+    public SelenideElement forgot_password_button = $(By.xpath("/html/body/div[2]/div/div/div[2]/div/div[2]/div[4]/button"));
+
+    // Forgot password modal locators
+
+    public SelenideElement forgot_password_form = $("[data-testid=\"forgotpassword-page\"]");
+    public SelenideElement back_forgot_password_button = $(By.xpath("/html/body/div[2]/div/div/div[2]/div/div[2]/div[2]/button"));
+    public SelenideElement send_reset_link_button = $("[type=\"submit\"]");
+
 
     // Temp mail
     public SelenideElement temp_mail_field = $(By.id("pre_button"));

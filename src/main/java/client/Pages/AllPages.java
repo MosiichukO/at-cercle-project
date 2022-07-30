@@ -15,7 +15,7 @@ public class AllPages extends ClientPanelLocators {
     }
 
     public void openTempMailService () {
-        open(TEMP_MAIL);
+        open(TEMP_MAIL_URL);
         temp_mail_field.should(Condition.appear, Duration.ofSeconds(30));
     }
 

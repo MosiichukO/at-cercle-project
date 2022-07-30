@@ -1,6 +1,7 @@
 package client.UI;
 
 import client.Pages.AuthorizationPages;
+import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.*;
 
 @TestClassOrder(ClassOrderer.OrderAnnotation.class)
@@ -282,6 +283,17 @@ public class SignUpTest extends AuthorizationPages {
             switchToNewTab();
 
             checkSignInModalIsOpened();
+
+            setRegisteredTempMail();
+            setRegisteredPassword();
+            clickLogInButtonInSignInModal();
+
+            checkUserIsLoggedIn();
         }
+    }
+
+    @AfterEach
+    public void closeDriver() {
+        WebDriverRunner.driver().close();
     }
 }

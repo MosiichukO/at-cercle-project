@@ -121,6 +121,8 @@ public class TestData extends Credentials{
     public final String FULL_NAME_THIRTY_SYMBOLS_MAXIMUM_ERROR = "30 symbols maximum";
     public final String CONFIRM_PASSWORD_REQUIRED_ERROR = "Password confirmation is required";
     public final String CONFIRM_PASSWORD_MATCH_ERROR = "Should match password";
+    public final String USER_NOT_FOUND_ERROR = "User not found. Please check your email.";
+
 
 
 

@@ -229,6 +229,17 @@ public class AuthorizationPages extends AllPages {
         confirm_email_page.shouldBe(Condition.visible);
     }
 
+    public void checkTooltipForShowButtonIfValueIsHidden () {
+        show_button_tooltip.shouldBe(Condition.visible);
+        show_button_tooltip.shouldHave(Condition.exactText(SHOW_BUTTON_FOR_HIDDEN_PASSWORD));
+    }
+
+    public void checkTooltipForShowButtonIfValueIsNotHidden () {
+        show_button_tooltip.shouldBe(Condition.visible);
+        show_button_tooltip.shouldHave(Condition.exactText(SHOW_BUTTON_FOR_NOT_HIDDEN_PASSWORD));
+    }
+
+
     public void switchToNewTab () {
         Selenide.switchTo().window(1);
     }

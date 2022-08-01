@@ -123,6 +123,12 @@ public class TestData extends Credentials{
     public final String CONFIRM_PASSWORD_MATCH_ERROR = "Should match password";
     public final String USER_NOT_FOUND_ERROR = "User not found. Please check your email.";
 
+    // Tooltips
+
+    public final String SHOW_BUTTON_FOR_HIDDEN_PASSWORD = "Show password";
+    public final String SHOW_BUTTON_FOR_NOT_HIDDEN_PASSWORD = "Hide password";
+
+
 
 
 

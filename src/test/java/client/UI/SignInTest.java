@@ -235,6 +235,24 @@ public class SignInTest extends AuthorizationPages {
             checkEmailIsNotConfirmedError();
         }
 
+        @Test
+        @Order(16)
+        @Tag("C7985")
+        @DisplayName("By hover over the Show button for the Password field tooltip appears with text Show password")
+        public void tooltipForShowButtonWhenPasswordIsHidden () {
+            clickShowButtonForPasswordField();
+            clickShowButtonForPasswordField();
+            checkTooltipForShowButtonIfValueIsHidden();
+        }
+
+        @Test
+        @Order(17)
+        @Tag("C14177")
+        @DisplayName("By hover over the Show button for the Password field, when symbols are not hidden, tooltip appears with text Hide password")
+        public void tooltipForShowButtonWhenPasswordIsNotHidden () {
+            clickShowButtonForPasswordField();
+            checkTooltipForShowButtonIfValueIsNotHidden();
+        }
 
     }
 

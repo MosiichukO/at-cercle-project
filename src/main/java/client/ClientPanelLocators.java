@@ -34,6 +34,8 @@ public class ClientPanelLocators extends TestData {
     public SelenideElement confirm_password_field_error_sign_up = $( By.xpath("/html/body/div[2]/div/div/div[2]/div/div[2]/form/div/div[4]/p"));
     public SelenideElement confirm_email_page = $("[data-testid=\"congratulations\"]");
     public SelenideElement forgot_password_button = $(By.xpath("/html/body/div[2]/div/div/div[2]/div/div[2]/div[4]/button"));
+    public SelenideElement show_button_tooltip = $("[role=\"tooltip\"]");
+
 
     // Forgot password modal locators
 

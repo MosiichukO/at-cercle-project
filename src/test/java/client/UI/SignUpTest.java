@@ -290,6 +290,44 @@ public class SignUpTest extends AuthorizationPages {
 
             checkUserIsLoggedIn();
         }
+
+        @Test
+        @Order(23)
+        @Tag("C14203")
+        @DisplayName("By hover over the Show button for the Create password field tooltip appears with text Show password")
+        public void tooltipForShowButtonWhenPasswordIsHidden () {
+            clickShowButtonForPasswordField();
+            clickShowButtonForPasswordField();
+            checkTooltipForShowButtonIfValueIsHidden();
+        }
+
+        @Test
+        @Order(24)
+        @Tag("C14204")
+        @DisplayName("By hover over the Show button for the Create password field, when symbols are not hidden, tooltip appears with text Hide password")
+        public void tooltipForShowButtonWhenPasswordIsNotHidden () {
+            clickShowButtonForPasswordField();
+            checkTooltipForShowButtonIfValueIsNotHidden();
+        }
+
+        @Test
+        @Order(25)
+        @Tag("C14205")
+        @DisplayName("By hover over the Show button for the Confirm password field tooltip appears with text Show password")
+        public void tooltipForShowButtonWhenConfirmPasswordIsHidden () {
+            clickShowButtonForConfirmPasswordField();
+            clickShowButtonForConfirmPasswordField();
+            checkTooltipForShowButtonIfValueIsHidden();
+        }
+
+        @Test
+        @Order(26)
+        @Tag("C14206")
+        @DisplayName("By hover over the Show button for the Confirm password field, when symbols are not hidden, tooltip appears with text Hide password")
+        public void tooltipForShowButtonWhenConfirmPasswordIsNotHidden () {
+            clickShowButtonForConfirmPasswordField();
+            checkTooltipForShowButtonIfValueIsNotHidden();
+        }
     }
 
     @AfterEach

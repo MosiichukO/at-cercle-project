@@ -82,24 +82,6 @@ public class TestData extends Credentials{
     public final String RANDOM_FULL_NAME_INVALID_MIN_LENGTH = RandomStringUtils.randomAscii( 1 + (int) (Math.random() * (FULL_NAME_MIN_LENGTH - 1)));
     public final String RANDOM_FULL_NAME_INVALID_MAX_LENGTH = RandomStringUtils.randomAscii(FULL_NAME_MAX_LENGTH + (int) (Math.random() * 100));
 
-
-    // Test user's data
-
-    public final String NON_REGISTERED_EMAIL = "qa@invalid.com";
-    public final String NON_REGISTERED_PASSWORD = "invalid12";
-    public final String TEST_VALID_EMAIL_DC = "qa@auto.dc";
-    public final String TEST_VALID_EMAIL_SUPPORT = "qa@auto.support";
-    public final String TEST_VALID_EMAIL_ADMIN = "qa@auto.admin";
-    public final String TEST_VALID_PASSWORD = "qa_auto_password";
-    public final String DRY_CLEANER_ADDRESS = "qa_auto_address";
-    public final String DRY_CLEANER_NAME = "1-qa_auto_name";
-    public final String DRY_CLEANER_CONTACT_DETAILS = "qa_auto_contact_details";
-    public final String DRY_CLEANER_ADDRESS_UPDATED = "qa_auto_address_updated";
-    public final String DRY_CLEANER_NAME_UPDATED = "1-qa_auto_name_updated";
-    public final String MEMBER_SINCE_START_DATE = "2022-02-17";
-    public final String PART_OF_EMAIL_FOR_FILTERING = "@support";
-    public String TEMP_EMAIL = "";
-
     // Dates
 
     public final String TODAY_DATE = String.valueOf(LocalDate.now());
